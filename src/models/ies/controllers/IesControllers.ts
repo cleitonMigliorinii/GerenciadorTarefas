@@ -23,7 +23,7 @@ export const iesControllers = (fastify: FastifyInstance,
 
     })
 
-
+    done();
 
 
 }
