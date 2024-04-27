@@ -9,3 +9,8 @@ export interface IesCriacaoDto {
     nome: string;
     cnpj: string;
 }
+
+export interface IesUpdateDto {
+    nome?: string;
+    cnpj?: string;
+}
