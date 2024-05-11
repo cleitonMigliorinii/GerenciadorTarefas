@@ -27,5 +27,5 @@ model Turma{
   dataCriacao DateTime @default(now())
   dataInicioPeriodo DateTime @default(now())
   dataFinalPeriodo DateTime @default(now())
-  codigoIes String
+  codigoIes   String 
 }
