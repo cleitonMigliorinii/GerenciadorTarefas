@@ -7,13 +7,13 @@ import { TurmaCriacaoDto, TurmaUpdateDto } from "../entity/Turma";
 
 export interface TurmaRepositoryInterface{
 
-    salvarTurma(ies: TurmaCriacaoDto): Promise<Turma>
+    cadastrarTurma(turma: TurmaCriacaoDto): Promise<Turma>
 }
 
 export class TurmaRepository implements TurmaRepositoryInterface {
     
 
-    async salvarTurma(turma: TurmaCriacaoDto): Promise<Turma> {
+    async cadastrarTurma(turma: TurmaCriacaoDto): Promise<Turma> {
         
         try {
             
@@ -34,7 +34,6 @@ export class TurmaRepository implements TurmaRepositoryInterface {
             return await prisma.turma.findUnique({
                 where: {codigo}
             })
-            
             
         } catch (error) {
             
