@@ -1,6 +1,6 @@
 import { TurmaCriacaoDto, TurmaUpdateDto } from "../../src/models/turma/data/entity/Turma";
 import { TurmaRepository } from "../../src/models/turma/data/repository/turmaRepository";
-import { CadastrarTurmaUseCase } from "../../src/models/turma/domain/useCases/CadastrarTurmaUseCase";
+import { CadastrarTurmaUseCase } from "../../src/models/turma/domain/useCase/CadastrarTurmaUseCase";
 import { UpdateTurmaUseCase } from "../../src/models/turma/domain/useCases/UpdateTurmaUseCase";
 import { FakeDataService } from "../../src/service/iesFake.data.service";
 
