@@ -19,3 +19,11 @@ model Ies {
   cnpj        String   @unique
   dataCriacao DateTime @default(now())
 }
+
+model DisciplinaAluno {
+  codigo           String   @id @default(uuid())
+  codigoAluno      String
+  codigoDisciplina String
+  dataRegistro     DateTime @default(now())
+  situacao         String
+}

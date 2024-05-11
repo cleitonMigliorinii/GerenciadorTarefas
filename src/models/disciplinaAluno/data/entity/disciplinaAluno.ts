@@ -1,16 +1,17 @@
-export interface Ies {
+export interface DisciplinaAluno {
     codigo: string;
-    nome: string;
-    dataCriacao : Date;
-    cnpj: string;
+    codigoAluno: string;
+    codigoDisciplina: string;
+    dataRegistro : Date;
+    situacao: string;
 }
 
-export interface IesCriacaoDto {
-    nome: string;
-    cnpj: string;
+export interface DisciplinaAlunoCriacaoDto {
+    codigoAluno: string;
+    codigoDisciplina: string;
+    situacao: string;
 }
 
-export interface IesUpdateDto {
-    nome?: string;
-    cnpj?: string;
+export interface DisciplinaAlunoUpdateDto {
+    situacao: string;
 }
