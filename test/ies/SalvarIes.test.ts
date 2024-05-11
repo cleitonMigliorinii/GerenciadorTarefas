@@ -5,15 +5,21 @@ import { FakeDataService } from "../../src/services/fake.data.service";
 
 describe('SalvarIes', () => {
 
+    let salvarIesUseCase: SalvarIesUseCase;
+    let fakeService: any;
+
+    beforeEach(() => {
+        //Sempre antes do teste vai rodar esse bloco
+        const iesRepository = new IesRepository();
+        salvarIesUseCase = new SalvarIesUseCase(iesRepository);
+        fakeService = FakeDataService();
+    })
+
     it('teste de criação de nova Ies', async () => {
 
-        const iesRepository = new IesRepository();
-        const salvarIesUseCase = new SalvarIesUseCase(iesRepository);
-        const fake = FakeDataService();
-
         const iesCriacaoDto: IesCriacaoDto = {
-            nome: fake.username,
-            cnpj: fake.cnpj
+            nome: fakeService.username,
+            cnpj: fakeService.cnpj
         }
 
         const ies = await salvarIesUseCase.execute(iesCriacaoDto);
@@ -23,6 +29,27 @@ describe('SalvarIes', () => {
         expect(iesCriacaoDto.nome).toBe(ies.nome);
         expect(iesCriacaoDto.cnpj).toBe(ies.cnpj);
 
+    })
+
+    it('teste de criação no mesmo CNPJ', async () =>{
+
+        const cnpj = fakeService.cnpj;
+        let iesTest: IesCriacaoDto = {
+            nome : 'Teste 1',
+            cnpj
+        } 
+
+        await salvarIesUseCase.execute(iesTest);
+
+        iesTest.nome = 'Usuario Fralde'
+
+        try{
+            const ies = await salvarIesUseCase.execute(iesTest)
+            expect(ies).toBeUndefined();
+        }catch(error: any){
+            expect(error).toBeInstanceOf(Error);
+            expect(error.message).toBe("Problema ao criar IES")
+        }
     })
 
 })

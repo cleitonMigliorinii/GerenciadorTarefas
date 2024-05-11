@@ -9,7 +9,7 @@ export class AlterarIesUseCase{
 
     constructor(private iesRepository: IesRepository){}
 
-    async execute(codigo: UUID, iesUpdate: IesUpdateDto): Promise<Ies>{
+    async execute(codigo: string, iesUpdate: IesUpdateDto): Promise<Ies>{
         try {
 
             return await this.iesRepository.alterarIes(codigo, iesUpdate)
