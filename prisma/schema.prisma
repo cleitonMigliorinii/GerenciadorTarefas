@@ -19,3 +19,16 @@ model Ies {
   cnpj        String   @unique
   dataCriacao DateTime @default(now())
 }
+
+model Aluno {
+  RA                 Int      @id @default(autoincrement())
+  nomeAluno          String
+  senhaAluno         String
+  emailAluno         String   @unique
+  telefoneAluno      String
+  tipoAluno          String
+  turmaAluno         String
+  dataCriacaoAluno   DateTime
+  situacaoAluno      String
+  dataAlteracaoAluno DateTime
+}
