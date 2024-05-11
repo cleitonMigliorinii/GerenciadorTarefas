@@ -20,15 +20,15 @@ model Ies {
   dataCriacao DateTime @default(now())
 }
 
-model Aluno {
-  RA                 Int      @id @default(autoincrement())
+model aluno {
+  RA                 Int      @id
   nomeAluno          String
   senhaAluno         String
   emailAluno         String   @unique
   telefoneAluno      String
   tipoAluno          String
   turmaAluno         String
-  dataCriacaoAluno   DateTime
+  dataCriacaoAluno   DateTime @default(now())
   situacaoAluno      String
   dataAlteracaoAluno DateTime
 }
