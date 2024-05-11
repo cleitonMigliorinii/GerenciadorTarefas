@@ -6,7 +6,7 @@ export class DeleteUseCase{
 
     constructor(private iesRepository: IesRepository){}
 
-    async execute(codigo: UUID){
+    async execute(codigo: string){
         try {
             await this.iesRepository.deleteIes(codigo)
         } catch (error) {

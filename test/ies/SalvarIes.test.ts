@@ -1,44 +1,59 @@
+import { exec } from "child_process";
 import { IesCriacaoDto } from "../../src/models/ies/data/entity/Ies";
 import { IesRepository } from "../../src/models/ies/data/repository/IesRepository"
 import { SalvarIesUseCase } from "../../src/models/ies/domain/useCases/SalvarIesUseCase";
+import { FakeDataService } from "../../src/service/fake.data.service";
 
-describe('SalvarIes', () => {
+
+describe('SalvarIes', () =>{
+
+    let salvarIesUseCase: SalvarIesUseCase;
+    let fakeService: any;
+
+    beforeEach(()=>{
+        const iesRepository = new IesRepository();
+        salvarIesUseCase = new SalvarIesUseCase(iesRepository);
+        fakeService = FakeDataService();
+    })
 
     it('teste de criação de nova Ies', async () => {
 
-        const iesRepository = new IesRepository();
-        const salvarIesUseCase = new SalvarIesUseCase(iesRepository);
+    const iesCriacaoDto: IesCriacaoDto = {
+        nome: fakeService.username,
+        cnpj:fakeService.cnpj,
 
-        const iesCriacaoDto: IesCriacaoDto = {
-            nome: 'TesteIes',
-            cnpj: '99999999999999'
-        }
+    }
 
-        const ies = await salvarIesUseCase.execute(iesCriacaoDto);
+    console.log("Username: " + FakeDataService().username);
 
-        expect(ies).toBeDefined();
-        expect(ies.codigo).toBeDefined();
-        expect(ies.nome).toBe(iesCriacaoDto.nome);
-        expect(ies.cnpj).toBe(iesCriacaoDto.cnpj);
+    const ies = await salvarIesUseCase.execute(iesCriacaoDto);
+
+    expect(ies).toBeDefined();
+    expect(ies.codigo).toBeDefined();
+    expect(ies.nome).toBe(iesCriacaoDto.nome);
+    expect(ies.cnpj).toBe(iesCriacaoDto.cnpj);
 
     })
-    // it('teste de buscar ies', async () => {
 
-    //     const iesRepository = new IesRepository();
-    //     const salvarIesUseCase = new SalvarIesUseCase(iesRepository);
+    it ('teste de criação no mesmo CNPJ', async () => {
 
-    //     const iesCriacaoDto: IesCriacaoDto = {
-    //         nome: 'TesteIes',
-    //         cnpj: '99999999999999'
-    //     }
+        const cnpj = fakeService.cnpj;
+        let iesTest: IesCriacaoDto = {
+            nome: 'Test 1',
+            cnpj
+        }
 
-    //     const ies = await salvarIesUseCase.execute(iesCriacaoDto);
+        await salvarIesUseCase.execute(iesTest);
+            
+        iesTest.nome = 'Usuario Fralde'
 
-    //     expect(ies).toBeDefined();
-    //     expect(ies.codigo).toBeDefined();
-    //     expect(ies.nome).toBe(iesCriacaoDto.nome);
-    //     expect(ies.cnpj).toBe(iesCriacaoDto.cnpj);
+        try {
+            await salvarIesUseCase.execute(iesTest);
+        } catch (error: any) {
+            expect(error).toBeInstanceOf(Error);
+            expect(error.message).toBe("Problema ao cadastrar IES")
+        }
+    })
 
-    // })
 
 })

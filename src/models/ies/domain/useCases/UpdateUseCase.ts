@@ -7,7 +7,7 @@ export class UpdateUseCase{
 
     constructor(private iesRepository: IesRepository){}
 
-    async execute(codigo: UUID, iesUpdate: IesUpdateDto): Promise<Ies>{
+    async execute(codigo: string, iesUpdate: IesUpdateDto): Promise<Ies>{
         try {
             return await this.iesRepository.updateIes(codigo, iesUpdate)
         } catch (error) {

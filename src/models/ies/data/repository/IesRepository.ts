@@ -27,7 +27,7 @@ export class IesRepository implements IesRepositoryInterface {
         }
     }
 
-    async buscarIesPorCodigo(codigo: UUID): Promise<Ies | null> {
+    async buscarIesPorCodigo(codigo: string): Promise<Ies | null> {
 
         try {
             return await prisma.ies.findUnique({
@@ -53,7 +53,7 @@ export class IesRepository implements IesRepositoryInterface {
 
     }
 
-    async updateIes(codigo: UUID, ies: IesUpdateDto): Promise<Ies> {
+    async updateIes(codigo: string, ies: IesUpdateDto): Promise<Ies> {
 
         try {
             return await prisma.ies.update({
@@ -67,7 +67,7 @@ export class IesRepository implements IesRepositoryInterface {
 
     }
 
-    async deleteIes(codigo: UUID): Promise<void> {
+    async deleteIes(codigo: string): Promise<void> {
 
         try {
             await prisma.ies.delete({

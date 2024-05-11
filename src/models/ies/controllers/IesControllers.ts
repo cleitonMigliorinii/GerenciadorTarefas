@@ -4,10 +4,11 @@ import { SalvarIesUseCase } from "../domain/useCases/SalvarIesUseCase";
 import { IesRepository } from "../data/repository/IesRepository";
 import { IesCriacaoDto, IesUpdateDto } from "../data/entity/Ies";
 import { UUID } from "crypto";
-import { BuscaCodUseCase } from "../domain/useCases/buscaCodUseCase";
+
 import { BuscarCNPJUseCase } from "../domain/useCases/BuscarCNPJUseCase";
 import { UpdateUseCase } from "../domain/useCases/UpdateUseCase";
 import { DeleteUseCase } from "../domain/useCases/DeleteUseCase";
+import { BuscaCodUseCase } from "../domain/useCases/BuscaCodUseCase";
 
 export const iesControllers = (fastify: FastifyInstance, options: RouteShorthandOptions, done: () => void) => {
 

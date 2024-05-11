@@ -15,7 +15,7 @@ export class SalvarIesUseCase{
             return iesCriada;
 
         } catch (error) {
-            throw new Error("Problema ao criar Ies");
+            throw new Error("Problema ao cadastrar IES");
             
         }
     }
