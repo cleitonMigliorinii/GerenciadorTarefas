@@ -65,10 +65,4 @@ export class IesRepository implements IesRepositoryInterface{
             throw new Error("Problema ao deletar IES")
         }
     }
-
-    
-
-
-
-
 }
