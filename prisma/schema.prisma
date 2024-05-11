@@ -16,16 +16,15 @@ datasource db {
 model Ies {
   codigo      String   @id @default(uuid())
   nome        String
-  dataCriacao DateTime @default(now())  
+  dataCriacao DateTime @default(now())
   cnpj        String   @unique
 }
 
-model Turma{
-
-  codigo      String   @id @default(uuid())
-  nome        String
-  dataCriacao DateTime @default(now())
-  dataInicioPeriodo DateTime @default(now())
-  dataFinalPeriodo DateTime @default(now())
-  codigoIes   String 
+model Turma {
+  codigo            String   @id @default(uuid())
+  nome              String
+  dataCriacao       DateTime @default(now())
+  dataInicioPeriodo DateTime
+  dataFinalPeriodo  DateTime
+  codigoIes         String
 }
