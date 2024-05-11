@@ -1,6 +1,6 @@
 import { TurmaRepository } from "../../data/repository/turmaRepository"
 
-export class DeleteUseCase{
+export class DeleteTurmaUseCase{
 
     constructor(private turmaRepository: TurmaRepository){}
 
