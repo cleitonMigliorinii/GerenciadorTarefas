@@ -21,7 +21,7 @@ model Ies {
 }
 
 model usuario {
-  RA                   Int      @id
+  RA                   String   @id
   nomeUsuario          String
   senhaUsuario         String
   emailUsuario         String   @unique
