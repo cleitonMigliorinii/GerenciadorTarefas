@@ -1,4 +1,3 @@
-import { UUID } from "crypto";
 import { IesCriacaoDto, IesUpdateDto } from "../../data/entity/Ies";
 import { IesRepository } from "../../data/repository/IesRepository";
 import { Ies } from "@prisma/client";

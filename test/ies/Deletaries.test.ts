@@ -3,7 +3,7 @@ import { IesRepository } from "../../src/models/ies/data/repository/IesRepositor
 import { BuscarCNPJUseCase } from "../../src/models/ies/domain/useCases/BuscarCNPJUseCase";
 import { DeleteUseCase } from "../../src/models/ies/domain/useCases/DeleteUseCase";
 import { SalvarIesUseCase } from "../../src/models/ies/domain/useCases/SalvarIesUseCase";
-import { FakeDataService } from "../../src/service/fake.data.service";
+import { FakeDataService } from "../../src/service/iesFake.data.service";
 
 describe("DeletarIesTest", () =>{
 

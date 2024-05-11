@@ -2,7 +2,7 @@ import { IesCriacaoDto, IesUpdateDto } from "../../src/models/ies/data/entity/Ie
 import { IesRepository } from "../../src/models/ies/data/repository/IesRepository"
 import { SalvarIesUseCase } from "../../src/models/ies/domain/useCases/SalvarIesUseCase";
 import { UpdateUseCase } from "../../src/models/ies/domain/useCases/UpdateUseCase";
-import { FakeDataService } from "../../src/service/fake.data.service";
+import { FakeDataService } from "../../src/service/iesFake.data.service";
 
 describe("AlteraçãoIesTest",  () => {
 
