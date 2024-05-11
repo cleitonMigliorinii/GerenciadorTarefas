@@ -28,15 +28,18 @@ export class TurmaRepository implements TurmaRepositoryInterface {
         }
     }
 
-    async buscarTurmaPorCodigo(codigo: string): Promise<Turma | null> {
+    async buscarTurmaPorCodigo(codigo: string): Promise <Turma | null> {
 
         try {
             return await prisma.turma.findUnique({
                 where: {codigo}
             })
-        } catch (error) {
-            throw new Error("Problema ao buscar turma");
             
+            
+        } catch (error) {
+            
+
+            throw new Error("Problema ao buscar turma");
         }
 
     }
