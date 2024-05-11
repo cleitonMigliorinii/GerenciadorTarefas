@@ -1,7 +1,7 @@
 import { Ies } from "@prisma/client";
 import { IesCriacaoDto, IesUpdateDto } from "../entity/Ies";
 import prisma from "../../../../config/dataBase";
-import { UUID } from "crypto";
+
 
 
 export interface IesRepositoryInterface{
