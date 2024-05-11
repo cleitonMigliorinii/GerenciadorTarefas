@@ -2,7 +2,7 @@
 import { Turma } from "@prisma/client";
 import { TurmaRepository } from "../../data/repository/turmaRepository";
 
-export class BuscaCodUseCase{
+export class BuscaTurmaUseCase{
 
     constructor(private turmaRepository: TurmaRepository){}
 
