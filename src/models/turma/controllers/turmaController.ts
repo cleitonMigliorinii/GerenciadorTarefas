@@ -1,5 +1,5 @@
 import { FastifyInstance, RouteShorthandOptions } from "fastify";
-import { CadastrarTurmaUseCase } from "../domain/useCase/CadastrarTurmaUseCase";
+import { CadastrarTurmaUseCase } from "../domain/useCases/CadastrarTurmaUseCase";
 import { TurmaCriacaoDto } from "../data/entity/Turma";
 import { TurmaRepository } from "../data/repository/turmaRepository";
 
