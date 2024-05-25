@@ -2,8 +2,8 @@
 
 import { UUID } from "crypto";
 import { DisciplinaRepository } from "../../data/repository/DisciplinaRepository";
-import { DisciplinaUpdateDto } from "../../data/entity/Disciplina";
 import { Disciplina } from "@prisma/client";
+import { DisciplinaUpdateDto } from "../../data/entity/Disciplina";
 
 export class AlterarDisciplinaUseCase {
 

@@ -1,6 +1,6 @@
 import { Disciplina } from "@prisma/client";
 import prisma from "../../../../config/database";
-import { DisciplinaCriacaoDto, DisciplinaUpdateDto } from "../entity/disciplina";
+import { DisciplinaCriacaoDto, DisciplinaUpdateDto } from "../entity/Disciplina";
 
 
 
@@ -18,6 +18,7 @@ export class DisciplinaRepository implements DisciplinaRepositoryInterface {
             })
 
         } catch (error) {
+            console.log(error)
             throw new Error('Falha ao salvar disciplina');
         }
 

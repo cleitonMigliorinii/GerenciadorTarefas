@@ -8,10 +8,10 @@ export class SalvarDisciplinaUseCase {
     async execute(disciplina: DisciplinaCriacaoDto) {
         try {
 
-            const disciplinaCriada = await this.disciplinaRepository.salvarDisciplina(disciplina);
-            return disciplinaCriada;
+            return await this.disciplinaRepository.salvarDisciplina(disciplina);
 
         } catch (error) {
+            console.log(error)
             throw new Error("Problema ao criar disciplina")
         }
     }

@@ -6,7 +6,7 @@ import { SalvarDisciplinaUseCase } from "../domain/useCases/SalvarUseCase";
 import { BuscarDisciplinaPorCodigoUseCase } from "../domain/useCases/BuscarPorCodigo";
 import { AlterarDisciplinaUseCase } from "../domain/useCases/AlterarUseCase";
 import { DeletarDisciplinaUseCase } from "../domain/useCases/DeletarUseCase";
-import { DisciplinaCriacaoDto, DisciplinaUpdateDto } from "../data/entity/disciplina";
+import { DisciplinaCriacaoDto, DisciplinaUpdateDto } from "../data/entity/Disciplina";
 
 export const disciplinaControllers = (fastify: FastifyInstance,
     options: RouteShorthandOptions, done: () => void
