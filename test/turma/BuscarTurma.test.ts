@@ -19,7 +19,7 @@ describe("Busca de IES", () => {
         fakeService = FakeDataService();
     })
 
-    it('Buscar ies por codigo', async () => {
+    it('Buscar turma por codigo', async () => {
 
         const turmaCriacaoDto: TurmaCriacaoDto = {
             nome: fakeService.username,

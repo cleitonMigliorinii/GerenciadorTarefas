@@ -14,6 +14,7 @@ describe("AlteraçãoTurmaTest",  () => {
 
         const turmaRepository = new TurmaRepository();
         alterarTurmaUseCase = new UpdateTurmaUseCase(turmaRepository)
+        salvarTurmaUseCase = new CadastrarTurmaUseCase(turmaRepository)
         fakeService = FakeDataService();
     })
 
@@ -33,10 +34,10 @@ describe("AlteraçãoTurmaTest",  () => {
             nome: "UPDATE TURMA"
         }
 
-        const turmaUpdate  = await alterarTurmaUseCase.execute(turma.codigo, turmaUpdateDto);
+        const turmaUpdate  = await alterarTurmaUseCase.execute(turma.codigoIes, turmaUpdateDto);
 
         expect(turmaUpdate).toBeDefined();
-        expect(turmaUpdate.codigo).toBe(turma.codigo);
+        expect(turmaUpdate.codigoIes).toBe(turma.codigoIes);
         expect(turmaUpdate.dataFinalPeriodo).toBe(turma.dataFinalPeriodo)
         expect(turmaUpdate.dataInicioPeriodo).toBe(turma.dataInicioPeriodo)
         expect(turmaUpdate.nome).toBe(turmaUpdateDto.nome);
