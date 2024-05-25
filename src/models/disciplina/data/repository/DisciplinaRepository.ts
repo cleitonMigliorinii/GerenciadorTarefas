@@ -1,5 +1,4 @@
-import { Disciplina, Ies } from "@prisma/client";
-import { IesCriacaoDto, IesUpdateDto } from "../entity/Ies";
+import { Disciplina } from "@prisma/client";
 import prisma from "../../../../config/database";
 import { DisciplinaCriacaoDto, DisciplinaUpdateDto } from "../entity/disciplina";
 

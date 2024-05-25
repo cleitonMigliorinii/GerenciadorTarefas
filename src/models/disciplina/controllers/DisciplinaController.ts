@@ -14,7 +14,7 @@ export const disciplinaControllers = (fastify: FastifyInstance,
 
     const disciplinaRepository = new DisciplinaRepository();
     const salvarDisciplinaUseCase = new SalvarDisciplinaUseCase(disciplinaRepository);
-    const buscarDisciplinaPorCnpjUseCase = new BuscarDisciplinaPorCodigoUseCase(disciplinaRepository)
+    const buscarDisciplinaPorCodigoUseCase = new BuscarDisciplinaPorCodigoUseCase(disciplinaRepository)
     const alterarDisciplinaUseCase = new AlterarDisciplinaUseCase(disciplinaRepository);
     const deletarDisciplinaUseCase = new DeletarDisciplinaUseCase(disciplinaRepository)
 
@@ -30,13 +30,13 @@ export const disciplinaControllers = (fastify: FastifyInstance,
 
     })
 
-    fastify.get('/buscarDisciplina/:cnpj', async (request: any, reply) => {
+    fastify.get('/buscarDisciplina/:id', async (request: any, reply) => {
 
         try {
-            console.log(request.params.cnpj)
+            console.log(request.params.id)
 
-            const cnpj = request.params.cnpj;
-            const disciplina = buscarDisciplinaPorCnpjUseCase.execute(cnpj);
+            const id = request.params.id;
+            const disciplina = buscarDisciplinaPorCodigoUseCase.execute(id);
 
             if (disciplina) {
                 reply.code(200).send(disciplina)
