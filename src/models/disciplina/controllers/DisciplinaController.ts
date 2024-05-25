@@ -54,6 +54,9 @@ export const disciplinaControllers = (fastify: FastifyInstance,
 
         try {
             const codigo = request.params.codigo as UUID;
+
+            console.log(codigo)
+
             const disciplinaAlterar = request.body as DisciplinaUpdateDto;
 
             const disciplinaAlterada =
