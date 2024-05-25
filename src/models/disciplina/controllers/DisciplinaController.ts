@@ -75,6 +75,9 @@ export const disciplinaControllers = (fastify: FastifyInstance,
 
         try {
             const codigo = request.params.codigo as UUID;
+
+            console.log(codigo)
+
             await deletarDisciplinaUseCase.execute(codigo)
 
             reply.code(204).send("Deletado com sucesso ")
