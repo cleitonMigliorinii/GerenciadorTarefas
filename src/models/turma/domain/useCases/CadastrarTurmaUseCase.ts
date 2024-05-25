@@ -7,7 +7,7 @@ export class CadastrarTurmaUseCase{
 
     async execute(turma: TurmaCriacaoDto){
         try{
-            const turmaCriada = await this.turmaRepository.salvarTurma(turma);
+            const turmaCriada = await this.turmaRepository.cadastrarTurma(turma);
 
             return turmaCriada;
         } catch (error){
@@ -15,3 +15,6 @@ export class CadastrarTurmaUseCase{
         }
     }
 }
+
+
+
