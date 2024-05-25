@@ -37,7 +37,7 @@ export const turmaControllers = (fastify: FastifyInstance, options: RouteShortha
             if(turma){
                 reply.code(200).send(turma)
             }else{
-                reply.code(404).send({error: "Produto não encontrada"})
+                reply.code(404).send({error: "Turma não encontrada"})
             }
            
         } catch (error) {
