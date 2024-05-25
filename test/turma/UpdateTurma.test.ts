@@ -1,8 +1,8 @@
 import { TurmaCriacaoDto, TurmaUpdateDto } from "../../src/models/turma/data/entity/Turma";
 import { TurmaRepository } from "../../src/models/turma/data/repository/turmaRepository";
-import { CadastrarTurmaUseCase } from "../../src/models/turma/domain/useCase/CadastrarTurmaUseCase";
+import { CadastrarTurmaUseCase } from "../../src/models/turma/domain/useCases/CadastrarTurmaUseCase";
 import { UpdateTurmaUseCase } from "../../src/models/turma/domain/useCases/UpdateTurmaUseCase";
-import { FakeDataService } from "../../src/service/iesFake.data.service";
+import { FakeDataService } from "../../src/service/turmaFake.data.service";
 
 describe("AlteraçãoTurmaTest",  () => {
 
@@ -21,8 +21,8 @@ describe("AlteraçãoTurmaTest",  () => {
         
         const turmaCriacaoDto: TurmaCriacaoDto = {
             nome: fakeService.username,
-            dataFinalPeriodo: fakeService.dataCriacao,
-            dataInicioPeriodo: fakeService.dataCriacao,
+            dataFinalPeriodo: fakeService.dataInicial,
+            dataInicioPeriodo: fakeService.dataFinal,
             codigoIes:'555'
             }
     
