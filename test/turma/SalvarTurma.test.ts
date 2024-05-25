@@ -1,9 +1,8 @@
-import { exec } from "child_process";
-import { IesCriacaoDto } from "../../src/models/ies/data/entity/Ies";
 import { TurmaRepository } from "../../src/models/turma/data/repository/turmaRepository";
 import {CadastrarTurmaUseCase} from "../../src/models/turma/domain/useCases/CadastrarTurmaUseCase"
 import { FakeDataService } from "../../src/service/turmaFake.data.service";
 import { TurmaCriacaoDto } from "../../src/models/turma/data/entity/Turma";
+import exp from "constants";
 
 
 describe('SalvarTurma', () =>{
@@ -28,13 +27,14 @@ describe('SalvarTurma', () =>{
 
     console.log("Username: " + FakeDataService().username);
 
-    const ies = await cadastrarTurmaUseCase.execute(turmaCriacaoDto);
+    const turma = await cadastrarTurmaUseCase.execute(turmaCriacaoDto);
 
-    expect(ies).toBeDefined();
-    expect(ies.codigo).toBeDefined();
-    expect(ies.nome).toBe(turmaCriacaoDto.nome);
-    expect(ies.dataInicioPeriodo).toBe(turmaCriacaoDto.dataInicioPeriodo);
-    expect(ies.dataFinalPeriodo).toBe(turmaCriacaoDto.dataFinalPeriodo);
+    expect(turma).toBeDefined();
+    expect(turma.codigo).toBeDefined();
+    expect(turma.nome).toBe(turmaCriacaoDto.nome);
+    expect(turma.dataInicioPeriodo).toBe(turmaCriacaoDto.dataInicioPeriodo);
+    expect(turma.dataFinalPeriodo).toBe(turmaCriacaoDto.dataFinalPeriodo);
+    expect(turma.codigoIes).toBe(turmaCriacaoDto.codigoIes)
 
 
     })

@@ -23,7 +23,7 @@ export class TurmaRepository implements TurmaRepositoryInterface {
             return turmaCriada
 
         } catch (error) {
-            throw new Error("Falaha ao criar Ies");
+            throw new Error("Falaha ao criar Turma");
             
         }
     }
@@ -53,7 +53,7 @@ export class TurmaRepository implements TurmaRepositoryInterface {
                 data: turma
             })
         } catch (error) {
-            throw new Error("Problema ao alterar ies");
+            throw new Error("Problema ao alterar Turma");
             
         }
 
