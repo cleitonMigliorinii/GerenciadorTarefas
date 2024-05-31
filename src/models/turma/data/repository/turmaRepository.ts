@@ -23,7 +23,7 @@ export class TurmaRepository implements TurmaRepositoryInterface {
             return turmaCriada
 
         } catch (error) {
-            throw new Error("Falaha ao criar Turma");
+            throw new Error("Falha ao criar Turma");
             
         }
     }

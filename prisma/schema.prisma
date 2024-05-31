@@ -24,9 +24,7 @@ model Turma {
   codigo            String   @id @default(uuid())
   nome              String
   dataCriacao       DateTime @default(now())
-  dataInicioPeriodo DateTime
-  dataFinalPeriodo  DateTime
+  dataInicioPeriodo DateTime @default(now())
+  dataFinalPeriodo  DateTime @default(now())
   codigoIes         String
 }
-
-
