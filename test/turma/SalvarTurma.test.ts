@@ -15,17 +15,11 @@ describe('SalvarTurma', () => {
 
     it('teste de criação de nova Turma', async () => {
         const turmaCriacaoDto: TurmaCriacaoDto = {
-            nome: fakeService.username, // Corrigido de fakeService.username para fakeService.nome
+            nome: fakeService.username,
             dataInicioPeriodo: fakeService.dataInicioPeriodo,
             dataFinalPeriodo: fakeService.dataFinalPeriodo,
             codigoIes: fakeService.codigoIes
         };
-
-        // Logging para depuração
-        console.log("Nome: " + fakeService.username);
-        console.log("DataInicio: " + fakeService.dataInicioPeriodo);
-        console.log("DataFinal: " + fakeService.dataFinalPeriodo);
-        console.log("CodigoIes: " + fakeService.codigoIes);
 
         const turma = await cadastrarTurmaUseCase.execute(turmaCriacaoDto);
 

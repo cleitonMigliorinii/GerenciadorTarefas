@@ -18,7 +18,7 @@ describe("AlteraçãoTurmaTest", () => {
 
     it('Alterar turma Cadastrada', async () => {
         const turmaCriacaoDto: TurmaCriacaoDto = {
-            nome: fakeService.username,  // Corrigido de fakeService.username para fakeService.nome
+            nome: fakeService.username,  
             dataInicioPeriodo: fakeService.dataInicioPeriodo,
             dataFinalPeriodo: fakeService.dataFinalPeriodo,
             codigoIes: fakeService.codigoIes
@@ -33,7 +33,7 @@ describe("AlteraçãoTurmaTest", () => {
         const turmaUpdate = await alterarTurmaUseCase.execute(turma.codigo, turmaUpdateDto);
 
         expect(turmaUpdate).toBeDefined();
-        expect(turmaUpdate.codigo).toBe(turma.codigo);  // Verifique o código da turma
+        expect(turmaUpdate.codigo).toBe(turma.codigo);  
         expect(turmaUpdate.codigoIes).toBe(turma.codigoIes);
         expect(turmaUpdate.dataFinalPeriodo.toISOString()).toBe(turma.dataFinalPeriodo.toISOString());
         expect(turmaUpdate.dataInicioPeriodo.toISOString()).toBe(turma.dataInicioPeriodo.toISOString());
