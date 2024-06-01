@@ -17,5 +17,4 @@ export interface Disciplina {
     nome?: string;
     professor?: string;
     coordenador?: string;
-    dataAlteracao: Date;
   }
