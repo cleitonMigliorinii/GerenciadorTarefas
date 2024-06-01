@@ -24,7 +24,7 @@ describe("DeletarIesTest", () =>{
     it('deletar ies cadastrada', async () => {
 
         const iesCriacaoDto: IesCriacaoDto = {
-            nome: fakeService.username,
+            nome: fakeService.empresa,
             cnpj: fakeService.cnpj
         }
         const ies = await salvarIesUseCase.execute(iesCriacaoDto);

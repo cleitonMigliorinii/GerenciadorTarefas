@@ -20,15 +20,15 @@ model Ies {
   dataCriacao DateTime @default(now())
 }
 
-model usuario {
-  RA                   String   @id
+model Usuario {
+  RA                   String    @id
   nomeUsuario          String
   senhaUsuario         String
-  emailUsuario         String   @unique
+  emailUsuario         String    @unique
   telefoneUsuario      String
   tipoUsuario          String
   turmaUsuario         String
-  dataCriacaoUsuario   DateTime @default(now())
-  situacaoUsuario      String
-  dataAlteracaoUsuario DateTime
+  dataCriacaoUsuario   DateTime  @default(now())
+  situacaoUsuario      Boolean
+  dataAlteracaoUsuario DateTime?
 }
