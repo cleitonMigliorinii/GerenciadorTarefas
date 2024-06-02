@@ -3,7 +3,7 @@ import { IesCriacaoDto, IesUpdateDto } from "../entity/Ies";
 import prisma from "../../../../config/database";
 
 
-
+ 
 export interface IesRepositoryInterface{
     //nome(parametro:tipoParametro):retorno
     salvarIes(ies: IesCriacaoDto): Promise<Ies>
