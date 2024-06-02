@@ -34,7 +34,7 @@ describe("AlteracaoIesTest", () =>{
         }
 
         const disciplinaAlunoUpdate = 
-            await salvarDisciplinaAlunoUseCase.execute(disciplinaAluno.codigo, disciplinaAlunoAlterarDto);
+            await alterarDisciplinaAlunoUseCase.execute(disciplinaAluno.codigo, disciplinaAlunoAlterarDto);
 
         expect(disciplinaAlunoUpdate).toBeDefined()
         expect(disciplinaAlunoUpdate.codigoAluno).toBe(disciplinaAluno.codigoAluno)

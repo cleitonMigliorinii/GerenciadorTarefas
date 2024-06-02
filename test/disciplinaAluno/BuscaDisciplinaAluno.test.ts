@@ -31,8 +31,8 @@ describe("Busca de IES", () => {
 
         expect(disciplinaAluno).toBeDefined();
         expect(disciplinaAluno.codigoAluno).toBe(disciplinaAlunoBusca!.codigoAluno)
-        expect(disciplinaAluno.codigoDisciplina).toBe(disciplinaAlunoBusca!.)
-        expect(disciplinaAluno.situacao).toBe(disciplinaAlunoBusca!.cnpj)
+        expect(disciplinaAluno.codigoDisciplina).toBe(disciplinaAlunoBusca!.codigoDisciplina)
+        expect(disciplinaAluno.situacao).toBe(disciplinaAlunoBusca!.situacao)
     })
 
     it('verificar vinculo não encontrado', async () => {
