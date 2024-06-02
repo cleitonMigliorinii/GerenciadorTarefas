@@ -16,7 +16,7 @@ describe('SalvarDisciplinaAluno', () => {
         fakeService = FakeDataService();
     })
 
-    it('teste de vinculação de aluno com disciplina', async () => {
+    it('teste de vinculação de aluno com nova disciplina', async () => {
 
         const disciplinaAlunoCriacaoDto: DisciplinaAlunoCriacaoDto = {
             codigoAluno: fakeService.codigoAluno,

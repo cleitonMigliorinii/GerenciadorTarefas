@@ -5,7 +5,7 @@ import { BuscarDisciplinaAlunoPorDisciplinaUseCase } from "../../src/models/disc
 import { SalvarDisciplinaAlunoUseCase } from "../../src/models/disciplinaAluno/domain/useCase/SalvarDisciplinaAlunoUseCase";
 import { FakeDataService } from "../../src/services/fake.data.service";
 
-describe("Busca de IES", () => {
+describe("BuscarDisciplinaAlunoTest", () => {
 
     let buscarDisciplinaAlunoPorDisciplinaUseCase : BuscarDisciplinaAlunoPorDisciplinaUseCase;
     let salvarDisciplinaAlunoUseCase: SalvarDisciplinaAlunoUseCase; 
@@ -18,7 +18,7 @@ describe("Busca de IES", () => {
         fakeService = FakeDataService();
     })
 
-    it('Buscar ies por CNPJ', async () => {
+    it('Buscar alunos por codigo de disciplina', async () => {
 
         const disciplinaAlunoCriacaoDto: DisciplinaAlunoCriacaoDto = {
             codigoAluno: fakeService.codigoAluno,
@@ -27,7 +27,7 @@ describe("Busca de IES", () => {
         }
         const disciplinaAluno = await salvarDisciplinaAlunoUseCase.execute(disciplinaAlunoCriacaoDto);
 
-        const disciplinaAlunoBusca = await buscarDisciplinaAlunoPorDisciplinaUseCase.execute(disciplinaAluno.codigoDisciplina);
+        const disciplinaAlunoBusca : any = await buscarDisciplinaAlunoPorDisciplinaUseCase.execute(disciplinaAluno.codigoDisciplina);
 
         expect(disciplinaAluno).toBeDefined();
         expect(disciplinaAluno.codigoAluno).toBe(disciplinaAlunoBusca!.codigoAluno)

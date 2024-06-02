@@ -6,7 +6,7 @@ import { DeletarDisciplinaAlunoUseCase } from "../../src/models/disciplinaAluno/
 import { SalvarDisciplinaAlunoUseCase } from "../../src/models/disciplinaAluno/domain/useCase/SalvarDisciplinaAlunoUseCase";
 import { FakeDataService } from "../../src/services/fake.data.service";
 
-describe("DeletarIesTest", () =>{
+describe("DeletarDisciplinaAlunoTest", () =>{
 
     let deletarDisciplinaAlunoUseCase : DeletarDisciplinaAlunoUseCase;
     let buscarDisciplinaAlunoPorAlunoUseCase : BuscarDisciplinaAlunoPorAlunoUseCase;
@@ -21,7 +21,7 @@ describe("DeletarIesTest", () =>{
         fakeService = FakeDataService();
     })
 
-    it('deletar ies cadastrada', async () => {
+    it('deletar aluno cadastrado em disciplina', async () => {
 
         const disciplinaAlunoCriacaoDto: DisciplinaAlunoCriacaoDto = {
             codigoAluno: fakeService.codigoAluno,

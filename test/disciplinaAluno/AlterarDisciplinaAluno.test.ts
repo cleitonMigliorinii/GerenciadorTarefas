@@ -7,7 +7,7 @@ import { AlterarIesUseCase } from "../../src/models/ies/domain/useCases/AlterarI
 import { SalvarIesUseCase } from "../../src/models/ies/domain/useCases/SalvarIesUseCase";
 import { FakeDataService } from "../../src/services/fake.data.service";
 
-describe("AlteracaoIesTest", () =>{
+describe("AlteracaoDisciplinaAlunoTest", () =>{
 
     let alterarDisciplinaAlunoUseCase : AlterarDisciplinaAlunoUseCase;
     let salvarDisciplinaAlunoUseCase: SalvarDisciplinaAlunoUseCase; 
@@ -20,7 +20,7 @@ describe("AlteracaoIesTest", () =>{
         fakeService = FakeDataService();
     })
 
-    it('Alterar ies cadastrada', async () => {
+    it('Alterar vinculo aluno -> disciplina cadastrado', async () => {
 
         const disciplinaAlunoCriacaoDto: DisciplinaAlunoCriacaoDto = {
             codigoAluno: fakeService.codigoAluno,
