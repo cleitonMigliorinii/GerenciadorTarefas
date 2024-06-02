@@ -21,7 +21,7 @@ model Ies {
 }
 
 model DisciplinaAluno {
-  codigo           String   @id @default(uuid())
+  codigo           String   @id
   codigoAluno      String
   codigoDisciplina String
   dataRegistro     DateTime @default(now())

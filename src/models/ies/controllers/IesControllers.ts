@@ -50,7 +50,7 @@ export const iesControllers = (fastify: FastifyInstance,
 
     })
 
-    fastify.put('/alterarIes/:codigo', async (request, reply) => {
+    fastify.put('/alterarIes/:codigo', async (request: any, reply) => {
         
         try{
             const codigo = request.params.codigo as UUID;
@@ -68,7 +68,7 @@ export const iesControllers = (fastify: FastifyInstance,
 
     })
 
-    fastify.delete('/deletarIes/:codigo', async (request, reply) => {
+    fastify.delete('/deletarIes/:codigo', async (request: any, reply) => {
         
         try {
             const codigo = request.params.codigo as UUID;
@@ -82,8 +82,6 @@ export const iesControllers = (fastify: FastifyInstance,
 
     })
 
-
     done();
-
 
 }

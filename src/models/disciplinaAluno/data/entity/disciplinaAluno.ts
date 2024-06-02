@@ -13,5 +13,5 @@ export interface DisciplinaAlunoCriacaoDto {
 }
 
 export interface DisciplinaAlunoUpdateDto {
-    situacao: string;
+    situacao?: string;
 }
