@@ -2,6 +2,7 @@
 export interface Tarefa {
     codigo: number;
     disciplina: string;
+    disciplinaId: number;
     dataRegistro: Date;
     situacao: string;
     dataAlteracao: Date;
@@ -12,6 +13,7 @@ export interface Tarefa {
 // DTO para criação de Tarefa
 export interface TarefaCriacaoDto {
     disciplina: string;
+    disciplinaId: number;
     situacao: string;
     descricao: string;
     dataPrevista: Date;
@@ -24,4 +26,12 @@ export interface TarefaUpdateDto {
     descricao?: string;
     dataPrevista?: Date;
 }
+
+export interface Disciplina {
+    id: number;
+    nome: string;
+    descricao: string;
+    // Outras propriedades relevantes para a disciplina
+}
+
 

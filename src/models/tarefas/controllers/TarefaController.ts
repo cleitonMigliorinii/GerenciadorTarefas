@@ -5,6 +5,7 @@ import { DeletarTarefaUseCase } from "../domain/useCases/DeletarTarefaUseCase";
 import { BuscarTarefaPorIdUseCase } from "../domain/useCases/BuscarTarefaPorIdUseCase";
 import { TarefaRepository } from "../data/repository/TarefaRepository";
 import { TarefaCriacaoDto, TarefaUpdateDto } from "../data/entity/Tarefa";
+import { BuscarTarefaPorDisciplinaUseCase } from "../domain/useCases/BuscarTarefaPorDisciplinaUseCase";
 
 export const tarefaControllers = (
     fastify: FastifyInstance,
@@ -16,6 +17,7 @@ export const tarefaControllers = (
     const alterarTarefaUseCase = new AlterarTarefaUseCase(tarefaRepository);
     const deletarTarefaUseCase = new DeletarTarefaUseCase(tarefaRepository);
     const buscarTarefaPorIdUseCase = new BuscarTarefaPorIdUseCase(tarefaRepository);
+    const buscarTarefaPorDisciplinaUseCase = new BuscarTarefaPorDisciplinaUseCase(tarefaRepository);
 
     fastify.post('/tarefas', async (request, reply) => {
         try {
@@ -40,6 +42,23 @@ export const tarefaControllers = (
             reply.code(500).send({ erro: 'Erro de servidor' });
         }
     });
+
+    fastify.get('/tarefas/disciplina/:disciplinaId', async (request: any, reply) => {
+        try {
+            const disciplinaId = parseInt(request.params.disciplinaId);
+            // Adicione uma verificação para garantir que o ID da disciplina seja válido
+            const tarefas = await buscarTarefaPorDisciplinaUseCase.execute(disciplinaId);
+    
+            if (tarefas.length > 0) {
+                reply.code(200).send(tarefas);
+            } else {
+                reply.code(404).send({ erro: 'Nenhuma tarefa encontrada para a disciplina informada' });
+            }
+        } catch (error) {
+            reply.code(500).send({ erro: 'Erro de servidor' });
+        }
+    });
+    
 
     fastify.put('/tarefas/:codigo', async (request, reply) => {
         try {

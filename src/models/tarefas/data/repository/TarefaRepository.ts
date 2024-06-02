@@ -36,5 +36,9 @@ export class TarefaRepository {
     buscarPorId(codigo: number): Tarefa | null {
         return this.tarefas.find(tarefa => tarefa.codigo === codigo) || null;
     }
+
+    buscarPorDisciplina(disciplinaId: number): Tarefa[] {
+        return this.tarefas.filter(tarefa => tarefa.disciplinaId === disciplinaId);
+    }
 }
 
