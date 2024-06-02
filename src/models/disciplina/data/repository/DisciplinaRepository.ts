@@ -33,6 +33,14 @@ export class DisciplinaRepository implements DisciplinaRepositoryInterface {
             throw new Error("Problema ao buscar disciplina")
         }
     }
+    
+    async buscarTodasDisciplinas(): Promise<Disciplina[] | null> {
+        try {
+            return await prisma.disciplina.findMany()
+        } catch (error) {
+            throw new Error("Problema ao buscar disciplina")
+        }
+    }
 
 
     async alterarDisciplina(codigo: string, disciplina: DisciplinaUpdateDto): Promise<Disciplina> {

@@ -13,7 +13,7 @@ export class AlterarDisciplinaUseCase {
             return await this.disciplinaRepository.alterarDisciplina(nome, disciplinaUpdate)
 
         } catch (error) {
-            throw new Error("Problema ao deletar disciplina")
+            throw new Error("Problema ao alterar disciplina")
         }
     }
 

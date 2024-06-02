@@ -3,7 +3,6 @@ import { DisciplinaRepository } from "../../src/models/disciplina/data/repositor
 import { SalvarDisciplinaUseCase } from "../../src/models/disciplina/domain/useCases/SalvarUseCase";
 import { FakeDataService } from "../../src/services/fake.data.service";
 
-
 describe('SalvarDisciplina', () => {
 
     let salvarDisciplinaUseCase: SalvarDisciplinaUseCase;
@@ -16,15 +15,13 @@ describe('SalvarDisciplina', () => {
         fakeService = FakeDataService();
     })
 
-    it('teste de criação de nova disciplina', async () => {
+    it('teste de criação de nova Disciplina', async () => {
 
         const disciplinaCriacaoDto: DisciplinaCriacaoDto = {
             nome: fakeService.nome,
             professor: fakeService.professor,
             coordenador: fakeService.coordenador
         }
-
-        console.log(disciplinaCriacaoDto);
 
         const disciplina = await salvarDisciplinaUseCase.execute(disciplinaCriacaoDto);
 
