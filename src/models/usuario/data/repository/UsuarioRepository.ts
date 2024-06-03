@@ -1,5 +1,5 @@
 import { Usuario } from "@prisma/client";
-import { UsuarioCriacaoDto, UsuarioAtualizacaoDto } from "../entity/Usuario"
+import { UsuarioCriacaoDto, UsuarioAtualizacaoDto} from "../entity/usuario" 
 import prisma from "../../../../config/database";
 
 export interface UsuarioRepositoryInterface{
@@ -36,6 +36,16 @@ export class UsuarioRepository implements UsuarioRepositoryInterface{
         try{
             return await prisma.usuario.findMany({
                 where: {nomeUsuario}
+            })
+        }catch(error){
+            throw new Error("Problema ao buscar USUARIO")
+        }
+    }
+
+    async buscarUsuarioPorTurma(turmaID: string): Promise<Usuario[] | null>{
+        try{
+            return await prisma.usuario.findMany({
+                where: {turmaID}
             })
         }catch(error){
             throw new Error("Problema ao buscar USUARIO")

@@ -1,9 +1,9 @@
 import { FastifyInstance, RouteShorthandOptions } from "fastify";
 import { UsuarioRepository } from "../data/repository/UsuarioRepository";
-import { UsuarioCriacaoDto, UsuarioAtualizacaoDto } from "../data/entity/Usuario";
+import { UsuarioCriacaoDto, UsuarioAtualizacaoDto } from "../data/entity/usuario";
 
 import { SalvarUsuarioUseCase } from "../domain/useCases/SalvarUsuarioUseCase";
-import { BuscarUsuarioPorRAUseCase, BuscarUsuarioPorNomeUseCase } from "../domain/useCases/BuscarUsuarioUseCase";
+import { BuscarUsuarioPorRAUseCase, BuscarUsuarioPorNomeUseCase, BuscarUsuarioPorTurmaUseCase } from "../domain/useCases/BuscarUsuarioUseCase";
 import { AlterarUsuarioUseCase } from "../domain/useCases/AlterarUsuarioUseCase";
 import { DeletarUsuarioUseCase } from "../domain/useCases/DeletarUsuarioUseCase";
 
@@ -15,6 +15,7 @@ export const usuarioControllers = (fastify: FastifyInstance,
     const salvarUsuarioUseCase = new SalvarUsuarioUseCase(usuarioRepository);
     const buscarUsuarioPorRAUseCase = new BuscarUsuarioPorRAUseCase(usuarioRepository)
     const buscarUsuarioPorNomeUseCase = new BuscarUsuarioPorNomeUseCase(usuarioRepository)
+    const buscarUsuarioPorTurmaUseCase = new BuscarUsuarioPorTurmaUseCase(usuarioRepository)
     const alterarUsuarioUseCase = new AlterarUsuarioUseCase(usuarioRepository);
     const deletarUsuarioUseCase = new DeletarUsuarioUseCase(usuarioRepository);
 
@@ -34,12 +35,12 @@ export const usuarioControllers = (fastify: FastifyInstance,
 
         try{
             const ra = request.params.ra;
-            const usuario =  buscarUsuarioPorNomeUseCase.execute(ra);
+            const usuario =  buscarUsuarioPorRAUseCase.execute(ra);
 
             if(usuario){
                 reply.code(200).send(usuario)
             }else{
-                reply.code(404).send({erro: 'USUARIO não encontrada'})
+                reply.code(404).send({erro: 'USUARIO não encontrado'})
             }
         }catch(error){
             reply.code(500).send({erro: 'Erro de servidor'})
@@ -57,7 +58,7 @@ export const usuarioControllers = (fastify: FastifyInstance,
             if(usuario){
                 reply.code(200).send(usuario)
             }else{
-                reply.code(404).send({erro: 'USUARIO não encontrada'})
+                reply.code(404).send({erro: 'USUARIO não encontrado'})
             }
         }catch(error){
             reply.code(500).send({erro: 'Erro de servidor'})
@@ -65,6 +66,23 @@ export const usuarioControllers = (fastify: FastifyInstance,
 
 
     })
+
+    fastify.get('/buscarUsuario/turma/:turmaID', async (request: any, reply) => {
+
+        try {
+            const turmaID = request.params.turmaID
+            const usuario = buscarUsuarioPorTurmaUseCase.execute(turmaID);
+
+            if (usuario){
+                reply.code(200).send(usuario)
+            }else{
+                reply.code(404).send({erro: "USUARIOS não encontrados"})
+            }
+        }catch(error){
+            reply.code(500).send({erro: 'Erro de servidor'})
+        }
+
+    }) 
 
     fastify.put('/alterarUsuario/:ra', async (request: any, reply) => {
         

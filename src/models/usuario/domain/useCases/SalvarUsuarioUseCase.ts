@@ -1,5 +1,5 @@
 import { UsuarioRepository } from "../../data/repository/UsuarioRepository";
-import { UsuarioCriacaoDto } from "../../data/entity/Usuario";
+import { UsuarioCriacaoDto } from "../../data/entity/usuario";
 
 export class SalvarUsuarioUseCase{
 

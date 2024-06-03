@@ -1,5 +1,5 @@
-import { UsuarioRepository } from "../../data/repository/UsuarioRepository"; 
-import { UsuarioAtualizacaoDto } from "../../data/entity/Usuario";
+import { UsuarioRepository } from "../../data/repository/UsuarioRepository";
+import { UsuarioAtualizacaoDto } from "../../data/entity/usuario";
 import { Usuario } from "@prisma/client";
 
 export class AlterarUsuarioUseCase{

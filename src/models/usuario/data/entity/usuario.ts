@@ -5,7 +5,7 @@ export interface Usuario {
     emailUsuario: string;
     telefoneUsuario: string;
     tipoUsuario: string;
-    turmaUsuario: string;
+    turmaID: string;
     situacaoUsuario: Boolean;
     dataAlteracaoUsuario?: Date;
 }
@@ -16,7 +16,7 @@ export interface UsuarioCriacaoDto {
     emailUsuario: string;
     telefoneUsuario: string;
     tipoUsuario: string;
-    turmaUsuario: string;
+    turmaID: string;
     situacaoUsuario: boolean;
     dataAlteracaoUsuario?: Date;
 }
@@ -27,7 +27,7 @@ export interface UsuarioAtualizacaoDto {
     emailUsuario?: string;
     telefoneUsuario?: string;
     tipoUsuario?: string;
-    turmaUsuario?: string;
+    turmaID?: string;
     situacaoUsuario?: boolean;
     dataAlteracaoUsuario: Date;
 }

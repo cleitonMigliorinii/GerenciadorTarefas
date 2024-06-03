@@ -1,4 +1,4 @@
-import { UsuarioCriacaoDto } from "../../src/models/usuario/data/entity/Usuario";
+import { UsuarioCriacaoDto } from "../../src/models/usuario/data/entity/usuario";
 import { UsuarioRepository } from "../../src/models/usuario/data/repository/UsuarioRepository";
 import { SalvarUsuarioUseCase } from "../../src/models/usuario/domain/useCases/SalvarUsuarioUseCase";
 import { FakeDataService } from "../../src/services/fake.data.service";
@@ -23,7 +23,7 @@ describe('SalvarIes', () => {
             emailUsuario: fakeService.email,
             telefoneUsuario: fakeService.telefone,
             tipoUsuario: fakeService.tipoUser,
-            turmaUsuario: fakeService.turma,
+            turmaID: fakeService.turma,
             situacaoUsuario: fakeService.situacao
         }
 
@@ -36,7 +36,7 @@ describe('SalvarIes', () => {
         expect(usuarioCriacaoDto.emailUsuario).toBe(usuario.emailUsuario);
         expect(usuarioCriacaoDto.telefoneUsuario).toBe(usuario.telefoneUsuario);
         expect(usuarioCriacaoDto.tipoUsuario).toBe(usuario.tipoUsuario);
-        expect(usuarioCriacaoDto.turmaUsuario).toBe(usuario.turmaUsuario);
+        expect(usuarioCriacaoDto.turmaID).toBe(usuario.turmaID);
         expect(usuarioCriacaoDto.situacaoUsuario).toBe(usuario.situacaoUsuario);
 
     })
@@ -51,7 +51,7 @@ describe('SalvarIes', () => {
             emailUsuario: fakeService.email,
             telefoneUsuario: fakeService.telefone,
             tipoUsuario: fakeService.tipoUser,
-            turmaUsuario: fakeService.turma,
+            turmaID: fakeService.turma,
             situacaoUsuario: fakeService.situacao
         }
     

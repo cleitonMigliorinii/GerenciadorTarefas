@@ -1,4 +1,4 @@
-import { UsuarioCriacaoDto, UsuarioAtualizacaoDto } from "../../src/models/usuario/data/entity/Usuario";
+import { UsuarioCriacaoDto, UsuarioAtualizacaoDto } from "../../src/models/usuario/data/entity/usuario";
 import { UsuarioRepository } from "../../src/models/usuario/data/repository/UsuarioRepository"
 import { AlterarUsuarioUseCase } from "../../src/models/usuario/domain/useCases/AlterarUsuarioUseCase";
 import { SalvarUsuarioUseCase } from "../../src/models/usuario/domain/useCases/SalvarUsuarioUseCase";
@@ -26,7 +26,7 @@ describe("AlteracaoUsuarioTest", () =>{
             emailUsuario: fakeService.email,
             telefoneUsuario: fakeService.telefone,
             tipoUsuario: fakeService.tipoUser,
-            turmaUsuario: fakeService.turma,
+            turmaID: fakeService.turma,
             situacaoUsuario: fakeService.situacao
         }
 

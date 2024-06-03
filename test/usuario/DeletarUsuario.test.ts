@@ -1,6 +1,6 @@
-import { UsuarioCriacaoDto, UsuarioAtualizacaoDto } from "../../src/models/usuario/data/entity/Usuario";
+import { UsuarioCriacaoDto, UsuarioAtualizacaoDto } from "../../src/models/usuario/data/entity/usuario";
 import { UsuarioRepository } from "../../src/models/usuario/data/repository/UsuarioRepository";
-import { BuscarUsuarioPorNomeUseCase } from "../../src/models/usuario/domain/useCases/BuscarUsuarioUseCase";
+import { BuscarUsuarioPorRAUseCase } from "../../src/models/usuario/domain/useCases/BuscarUsuarioUseCase";
 import { SalvarUsuarioUseCase } from "../../src/models/usuario/domain/useCases/SalvarUsuarioUseCase";
 import { DeletarUsuarioUseCase } from "../../src/models/usuario/domain/useCases/DeletarUsuarioUseCase";
 import { FakeDataService } from "../../src/services/fake.data.service";
@@ -8,14 +8,14 @@ import { FakeDataService } from "../../src/services/fake.data.service";
 describe("DeletarUsuarioTest", () =>{
 
     let deletarUsuarioUseCase : DeletarUsuarioUseCase;
-    let buscarUsuarioPorCnpjUseCase : BuscarUsuarioPorNomeUseCase;
+    let buscarUsuarioPorRAUseCase : BuscarUsuarioPorRAUseCase;
     let salvarUsuarioUseCase: SalvarUsuarioUseCase; 
     let fakeService: any;
 
     beforeEach( ()=>{
         const usuarioRepository = new UsuarioRepository();
         deletarUsuarioUseCase = new DeletarUsuarioUseCase(usuarioRepository)
-        buscarUsuarioPorCnpjUseCase = new BuscarUsuarioPorNomeUseCase(usuarioRepository)
+        buscarUsuarioPorRAUseCase = new BuscarUsuarioPorRAUseCase(usuarioRepository)
         salvarUsuarioUseCase = new SalvarUsuarioUseCase(usuarioRepository)
         fakeService = FakeDataService();
     })
@@ -29,7 +29,7 @@ describe("DeletarUsuarioTest", () =>{
             emailUsuario: fakeService.email,
             telefoneUsuario: fakeService.telefone,
             tipoUsuario: fakeService.tipoUser,
-            turmaUsuario: fakeService.turma,
+            turmaID: fakeService.turma,
             situacaoUsuario: fakeService.situacao
         }
 
@@ -39,8 +39,8 @@ describe("DeletarUsuarioTest", () =>{
 
         await deletarUsuarioUseCase.execute(Usuario.RA);
         
-        const UsuarioRetorno = await buscarUsuarioPorCnpjUseCase.execute(Usuario.RA);
-        expect(UsuarioRetorno).toEqual([]);
+        const usuarioRetorno = await buscarUsuarioPorRAUseCase.execute(Usuario.RA);
+        expect(usuarioRetorno).toBeNull();
     })
 
 

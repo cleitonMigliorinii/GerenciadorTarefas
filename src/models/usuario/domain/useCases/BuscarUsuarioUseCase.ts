@@ -35,3 +35,19 @@ export class BuscarUsuarioPorNomeUseCase{
     }
 
 }
+
+export class BuscarUsuarioPorTurmaUseCase{
+
+    constructor(private usuarioRepository: UsuarioRepository){}
+
+    async execute(turmaID: string): Promise<Usuario[] | null> {
+        try {
+
+            return await this.usuarioRepository.buscarUsuarioPorTurma(turmaID)
+
+        } catch {
+            throw new Error("Problema ao buscar USUARIO por turma")
+        }
+    }
+
+}
