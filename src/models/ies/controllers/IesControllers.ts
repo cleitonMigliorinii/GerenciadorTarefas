@@ -1,4 +1,5 @@
 import { FastifyInstance, RouteShorthandOptions } from "fastify";
+
 import { SalvarIesUseCase } from "../domain/useCases/SalvarIesUseCase";
 import { IesRepository } from "../data/repository/IesRepository";
 import { IesCriacaoDto, IesUpdateDto } from "../data/entity/Ies";
@@ -22,11 +23,74 @@ export const iesControllers = (fastify: FastifyInstance,
 
     fastify.post('/salvarIes', async (request, reply) => {
         try {
-
             const ies = await salvarIesUseCase.execute(request.body as IesCriacaoDto);
             reply.code(201).send(ies);
 
         } catch (error) {
+            reply.code(500).send({error: "Houve algum problema ao salvar"})
+        }
+    })
+
+    fastify.get('/buscarIes/:codigo', async (request, reply) => {
+
+        try {
+            
+            const codigo = request.params.codigo as UUID;
+            const ies = await buscaCodUseCase.execute(codigo);
+
+            if(ies){
+                reply.code(200).send(ies)
+            }else{
+                reply.code(404).send({error: "Ies não encontrada"})
+            }
+           
+        } catch (error) {
+            
+        }
+    })
+
+    fastify.get('/buscarIesCnpj/:cnpj', async (request, reply) => {
+
+        try {
+            
+            const cnpj = request.params.cnpj;
+            const ies = await buscarCNPJUseCase.execute(cnpj);
+
+            if(ies){
+                reply.code(200).send(ies)
+            }else{
+                reply.code(404).send({error: "Ies não encontrada"})
+            }
+        } catch (error) {
+            
+        }
+    })
+    fastify.put('/alterarIes/:codigo', async (request, reply) => {
+
+        try {
+            
+            const codigo = request.params.codigo as UUID;
+            const iesAlterar = request.body as IesUpdateDto;
+
+            const ies = await updateUseCase.execute(codigo, iesAlterar);
+            
+            reply.code(200).send(ies)
+            
+        } catch (error) {
+            reply.code(500).send({error: "Erro ao alterar Ies"})
+        }
+    })
+    fastify.delete('/apagarIes/:codigo', async (request, reply) => {
+
+        try {
+            
+            const codigo = request.params.codigo as UUID;
+            await deleteUseCase.execute(codigo);
+
+            reply.code(204).send("Deletedado com sucesso")
+            
+           
+        } catch (error) {   
             reply.code(500).send({ error: 'Houve algum problema ao salvar' })
         }
 
@@ -52,38 +116,6 @@ export const iesControllers = (fastify: FastifyInstance,
 
     })
 
-    fastify.put('/alterarIes/:codigo', async (request, reply) => {
-
-        try {
-            const codigo = request.params.codigo as UUID;
-            const iesAlterar = request.body as IesUpdateDto;
-
-            const iesAlterada =
-                await alterarIesUseCase.execute(codigo, iesAlterar)
-
-            reply.code(200).send(iesAlterada)
-
-        } catch (error) {
-            reply.code(500).send({ erro: 'Problema ao alterar' })
-        }
-
-
-    })
-
-    fastify.delete('/deletarIes/:codigo', async (request, reply) => {
-
-        try {
-            const codigo = request.params.codigo as UUID;
-            await deletarIesUseCase.execute(codigo)
-
-            reply.code(204).send("Deletado com sucesso ")
-
-        } catch (error) {
-            reply.code(500).send({ erro: 'Problema ao deletar' })
-        }
-
-    })
-
     fastify.get('/listarTodasIes', async (request, reply) => {
 
         try {
@@ -93,7 +125,6 @@ export const iesControllers = (fastify: FastifyInstance,
         } catch (error) {
             reply.code(500).send({ erro: 'Problema ao deletar' })
         }
-
     })
 
     done();

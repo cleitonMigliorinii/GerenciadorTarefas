@@ -1,7 +1,6 @@
 {
   "name": "gerenciadortarefas",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/config/server.ts",
@@ -28,5 +27,9 @@
     "fastify": "^4.26.2",
     "sdk-cloud-dfe": "^1.0.6",
     "zod": "^3.22.4"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "description": ""
 }
