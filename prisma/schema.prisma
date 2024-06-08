@@ -16,6 +16,7 @@ datasource db {
 model Ies {
   codigo      String   @id @default(uuid())
   nome        String
+  cnpj        String   @unique
   dataCriacao DateTime @default(now())
   cnpj        String   @unique
 }
@@ -27,4 +28,36 @@ model Turma {
   dataInicioPeriodo DateTime @default(now())
   dataFinalPeriodo  DateTime @default(now())
   codigoIes         String
+}
+
+model DisciplinaAluno {
+  codigo           String   @id
+  codigoAluno      String
+  codigoDisciplina String
+  dataRegistro     DateTime @default(now())
+  situacao         String
+
+model Tarefa {
+  codigo         Int      @id @default(autoincrement())
+  disciplina     String
+  disciplinaId   Int
+  data_registro  DateTime @default(now())
+  situacao       String
+  data_alteracao DateTime @updatedAt
+  descricao      String
+  data_prevista  DateTime
+}
+
+model Usuario {
+  RA                   String    @id
+  nomeUsuario          String
+  senhaUsuario         String
+  emailUsuario         String    @unique
+  telefoneUsuario      String
+  tipoUsuario          String
+  turmaID              String
+  dataCriacaoUsuario   DateTime  @default(now())
+  situacaoUsuario      Boolean
+  dataAlteracaoUsuario DateTime?
+
 }

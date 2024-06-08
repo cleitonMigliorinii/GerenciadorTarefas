@@ -1,29 +1,28 @@
 import { FastifyInstance, RouteShorthandOptions } from "fastify";
-import { request } from "http";
+
 import { SalvarIesUseCase } from "../domain/useCases/SalvarIesUseCase";
 import { IesRepository } from "../data/repository/IesRepository";
 import { IesCriacaoDto, IesUpdateDto } from "../data/entity/Ies";
+
 import { UUID } from "crypto";
+import { BuscarIesPorCnpjUseCase } from "../domain/useCases/BuscarIesPorCnpjUseCase";
+import { AlterarIesUseCase } from "../domain/useCases/AlterarIesUseCase";
+import { DeletarIesUseCase } from "../domain/useCases/DeletarIesUseCase";
+import { ListarTodasIesUseCase } from "../domain/useCases/ListarTodasIesUseCase";
 
-import { BuscarCNPJUseCase } from "../domain/useCases/BuscarCNPJUseCase";
-import { UpdateUseCase } from "../domain/useCases/UpdateUseCase";
-import { DeleteUseCase } from "../domain/useCases/DeleteUseCase";
-import { BuscaCodUseCase } from "../domain/useCases/BuscaCodUseCase";
-
-export const iesControllers = (fastify: FastifyInstance, options: RouteShorthandOptions, done: () => void) => {
+export const iesControllers = (fastify: FastifyInstance,
+    options: RouteShorthandOptions, done: () => void
+) => {
 
     const iesRepository = new IesRepository();
     const salvarIesUseCase = new SalvarIesUseCase(iesRepository);
-
-    const buscaCodUseCase = new BuscaCodUseCase(iesRepository);
-    const buscarCNPJUseCase = new BuscarCNPJUseCase(iesRepository);
-    const updateUseCase = new UpdateUseCase(iesRepository);
-    const deleteUseCase = new DeleteUseCase(iesRepository);
+    const buscarIesPorCnpjUseCase = new BuscarIesPorCnpjUseCase(iesRepository)
+    const alterarIesUseCase = new AlterarIesUseCase(iesRepository);
+    const deletarIesUseCase = new DeletarIesUseCase(iesRepository)
+    const listarIes = new ListarTodasIesUseCase(iesRepository)
 
     fastify.post('/salvarIes', async (request, reply) => {
-
         try {
-            
             const ies = await salvarIesUseCase.execute(request.body as IesCriacaoDto);
             reply.code(201).send(ies);
 
@@ -91,8 +90,40 @@ export const iesControllers = (fastify: FastifyInstance, options: RouteShorthand
             reply.code(204).send("Deletedado com sucesso")
             
            
+        } catch (error) {   
+            reply.code(500).send({ error: 'Houve algum problema ao salvar' })
+        }
+
+    })
+
+    fastify.get('/buscarIes/:cnpj', async (request: any, reply) => {
+
+        try {
+            console.log(request.params.cnpj)
+
+            const cnpj = request.params.cnpj;
+            const ies = buscarIesPorCnpjUseCase.execute(cnpj);
+
+            if (ies) {
+                reply.code(200).send(ies)
+            } else {
+                reply.code(404).send({ erro: 'Ies não encontrada' })
+            }
         } catch (error) {
-            reply.code(404).send({error: "Erro ao apagar Ies"})
+            reply.code(500).send({ erro: 'Erro de servidor' })
+        }
+
+
+    })
+
+    fastify.get('/listarTodasIes', async (request, reply) => {
+
+        try {
+
+            reply.code(200).send(await listarIes.execute())
+
+        } catch (error) {
+            reply.code(500).send({ erro: 'Problema ao deletar' })
         }
     })
 
