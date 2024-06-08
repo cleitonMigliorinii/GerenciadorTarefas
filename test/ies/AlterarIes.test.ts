@@ -20,13 +20,13 @@ describe("AlteracaoIesTest", () =>{
     it('Alterar ies cadastrada', async () => {
 
         const iesCriacaoDto: IesCriacaoDto = {
-            nome: fakeService.username,
+            nome: fakeService.empresa,
             cnpj: fakeService.cnpj
         }
         const ies = await salvarIesUseCase.execute(iesCriacaoDto);
 
         const iesAlterarDto : IesUpdateDto = {
-            nome: "UPDATE IES"
+            nome: fakeService.empresa+" UPDATE"
         }
 
         const iesUpdate = 

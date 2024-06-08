@@ -18,7 +18,7 @@ describe('SalvarIes', () => {
     it('teste de criação de nova Ies', async () => {
 
         const iesCriacaoDto: IesCriacaoDto = {
-            nome: fakeService.username,
+            nome: fakeService.empresa,
             cnpj: fakeService.cnpj
         }
 
@@ -35,7 +35,7 @@ describe('SalvarIes', () => {
 
         const cnpj = fakeService.cnpj;
         let iesTest: IesCriacaoDto = {
-            nome : 'Teste 1',
+            nome : fakeService.empresa,
             cnpj
         } 
 
