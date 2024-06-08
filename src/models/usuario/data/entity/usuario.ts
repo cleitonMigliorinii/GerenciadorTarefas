@@ -1,3 +1,5 @@
+import { Turma } from "@prisma/client";
+
 export interface Usuario {
     RA: string;
     nomeUsuario: string;
@@ -5,9 +7,10 @@ export interface Usuario {
     emailUsuario: string;
     telefoneUsuario: string;
     tipoUsuario: string;
-    turmaID: string;
     situacaoUsuario: Boolean;
     dataAlteracaoUsuario?: Date;
+    turma: Turma
+
 }
 export interface UsuarioCriacaoDto {
     RA: string;
@@ -16,9 +19,9 @@ export interface UsuarioCriacaoDto {
     emailUsuario: string;
     telefoneUsuario: string;
     tipoUsuario: string;
-    turmaID: string;
     situacaoUsuario: boolean;
     dataAlteracaoUsuario?: Date;
+    turmaCodigo: string;
 }
 
 export interface UsuarioAtualizacaoDto {
@@ -27,7 +30,7 @@ export interface UsuarioAtualizacaoDto {
     emailUsuario?: string;
     telefoneUsuario?: string;
     tipoUsuario?: string;
-    turmaID?: string;
     situacaoUsuario?: boolean;
     dataAlteracaoUsuario: Date;
+    turmaCodigo: string;
 }

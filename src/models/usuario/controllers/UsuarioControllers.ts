@@ -67,11 +67,11 @@ export const usuarioControllers = (fastify: FastifyInstance,
 
     })
 
-    fastify.get('/buscarUsuario/turma/:turmaID', async (request: any, reply) => {
+    fastify.get('/buscarUsuario/turma/:turmaCodigo', async (request: any, reply) => {
 
         try {
-            const turmaID = request.params.turmaID
-            const usuario = buscarUsuarioPorTurmaUseCase.execute(turmaID);
+            const turmaCodigo = request.params.turmaCodigo
+            const usuario = buscarUsuarioPorTurmaUseCase.execute(turmaCodigo);
 
             if (usuario){
                 reply.code(200).send(usuario)

@@ -22,13 +22,14 @@ model Ies {
 }
 
 model Turma {
-  codigo            String   @id @default(uuid())
+  codigo            String    @id @default(uuid())
   nome              String
-  dataCriacao       DateTime @default(now())
-  dataInicioPeriodo DateTime @default(now())
-  dataFinalPeriodo  DateTime @default(now())
-  ies               Ies      @relation(fields: [iesCodigo], references: [codigo])
+  dataCriacao       DateTime  @default(now())
+  dataInicioPeriodo DateTime  @default(now())
+  dataFinalPeriodo  DateTime  @default(now())
+  ies               Ies       @relation(fields: [iesCodigo], references: [codigo])
   iesCodigo         String
+  Usuario           Usuario[]
 }
 
 model DisciplinaAluno {
@@ -57,10 +58,11 @@ model Usuario {
   emailUsuario         String    @unique
   telefoneUsuario      String
   tipoUsuario          String
-  turmaID              String
   dataCriacaoUsuario   DateTime  @default(now())
   situacaoUsuario      Boolean
   dataAlteracaoUsuario DateTime?
+  turma                Turma     @relation(fields: [turmaCodigo], references: [codigo])
+  turmaCodigo          String
 }
 
 model Disciplina {
