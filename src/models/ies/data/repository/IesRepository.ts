@@ -2,10 +2,7 @@ import { Ies } from "@prisma/client";
 import { IesCriacaoDto, IesUpdateDto } from "../entity/Ies";
 import prisma from "../../../../config/database";
 
-
-
-export interface IesRepositoryInterface {
-    //nome(parametro:tipoParametro):retorno
+export interface IesRepositoryInterface{
     salvarIes(ies: IesCriacaoDto): Promise<Ies>
 }
 export class IesRepository implements IesRepositoryInterface {
@@ -66,7 +63,6 @@ export class IesRepository implements IesRepositoryInterface {
         }
     }
 
-
     async listarTodasIes(): Promise<Ies[] | null> {
         try {
             return await prisma.ies.findMany()
@@ -75,9 +71,5 @@ export class IesRepository implements IesRepositoryInterface {
         }
     }
 
-
-
-
-
-
 }
+

@@ -20,6 +20,13 @@ model Ies {
   dataCriacao DateTime @default(now())
 }
 
+model DisciplinaAluno {
+  codigo           String   @id
+  codigoAluno      String
+  codigoDisciplina String
+  dataRegistro     DateTime @default(now())
+  situacao         String
+
 model Tarefa {
   codigo         Int      @id @default(autoincrement())
   disciplina     String
@@ -42,4 +49,5 @@ model Usuario {
   dataCriacaoUsuario   DateTime  @default(now())
   situacaoUsuario      Boolean
   dataAlteracaoUsuario DateTime?
+
 }

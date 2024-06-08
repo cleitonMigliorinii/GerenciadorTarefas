@@ -6,7 +6,7 @@ import { IesUpdateDto } from "../../data/entity/Ies";
 import { Ies } from "@prisma/client";
 
 export class BuscarIesPorCnpjUseCase{
-
+ 
     constructor(private iesRepository: IesRepository){}
 
     async execute(cnpj: string): Promise<Ies | null> {
