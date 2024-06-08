@@ -4,15 +4,15 @@ import prisma from "../../../../config/database";
 
 
 
-export interface IesRepositoryInterface{
+export interface IesRepositoryInterface {
     //nome(parametro:tipoParametro):retorno
     salvarIes(ies: IesCriacaoDto): Promise<Ies>
 }
-export class IesRepository implements IesRepositoryInterface{
+export class IesRepository implements IesRepositoryInterface {
 
-    async salvarIes(ies: IesCriacaoDto): Promise<Ies>{
+    async salvarIes(ies: IesCriacaoDto): Promise<Ies> {
         try {
-        
+
             const iesCriada = await prisma.ies.create({
                 data: ies
             })
@@ -25,48 +25,57 @@ export class IesRepository implements IesRepositoryInterface{
 
     }
 
-    async buscarIesPorCodigo(codigo: string): Promise<Ies | null>{
-        try{
+    async buscarIesPorCodigo(codigo: string): Promise<Ies | null> {
+        try {
             return await prisma.ies.findUnique({
-                where: {codigo}
+                where: { codigo }
             })
-        }catch(error){
+        } catch (error) {
             throw new Error("Problema ao buscar IES")
         }
     }
 
-    async buscarIesPorCnpj(cnpj: string): Promise<Ies | null>{
-        try{
+    async buscarIesPorCnpj(cnpj: string): Promise<Ies | null> {
+        try {
             return await prisma.ies.findUnique({
-                where: {cnpj}
+                where: { cnpj }
             })
-        }catch(error){
+        } catch (error) {
             throw new Error("Problema ao buscar IES")
         }
     }
 
-    async alterarIes(codigo: string, ies: IesUpdateDto): Promise<Ies>{
-        try{
+    async alterarIes(codigo: string, ies: IesUpdateDto): Promise<Ies> {
+        try {
             return await prisma.ies.update({
-                where: {codigo},
+                where: { codigo },
                 data: ies
             })
-        }catch(error){
+        } catch (error) {
             throw new Error("Problema ao alterar IES")
         }
     }
 
-    async deletarIes(codigo: string): Promise<void>{
-        try{
+    async deletarIes(codigo: string): Promise<void> {
+        try {
             await prisma.ies.delete({
-                where: {codigo}
+                where: { codigo }
             })
-        }catch(error){
+        } catch (error) {
             throw new Error("Problema ao deletar IES")
         }
     }
 
-    
+
+    async listarTodasIes(): Promise<Ies[] | null> {
+        try {
+            return await prisma.ies.findMany()
+        } catch (error) {
+            throw new Error("Problema ao listar IES")
+        }
+    }
+
+
 
 
 

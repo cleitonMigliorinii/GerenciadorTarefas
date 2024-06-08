@@ -1,10 +1,12 @@
-version: '3.7'
+version: "3.7"
+
 
 services:
   postgres:
     image: bitnami/postgresql:latest
     ports:
-      - '5433:5432'
+      - "5432:5432"
+
     environment:
       - POSTGRES_USER=cesul
       - POSTGRES_PASSWORD=cesul
