@@ -21,6 +21,7 @@ export class TurmaRepository implements TurmaRepositoryInterface {
             return turmaCriada
 
         } catch (error) {
+            console.log(error)
             throw new Error("Falha ao criar Turma");
             
         }
@@ -40,8 +41,6 @@ export class TurmaRepository implements TurmaRepositoryInterface {
         }
 
     }
-
-    
 
     async updateTurma(codigo: string, turma: TurmaUpdateDto): Promise<Turma> {
 

@@ -1,13 +1,13 @@
+import { Ies } from "../../../ies/data/entity/Ies";
 
 
 export interface Turma{
-
     codigo: string;
     nome: string;
     dataCriacao: Date;
     dataInicioPeriodo: Date;
     dataFinalPeriodo: Date;
-    codigoIes: string;
+    ies: Ies
 }
 
 export interface TurmaCriacaoDto{
@@ -15,7 +15,7 @@ export interface TurmaCriacaoDto{
     nome: string;
     dataInicioPeriodo: Date;
     dataFinalPeriodo: Date;
-    codigoIes: string;
+    iesCodigo: string
  
 }
 export interface TurmaUpdateDto{
@@ -23,6 +23,6 @@ export interface TurmaUpdateDto{
     nome?: string;
     dataInicioPeriodo?: Date;
     dataFinalPeriodo?: Date;
-    codigoIes?: string;
+    iesCodigo?: string
     
 }

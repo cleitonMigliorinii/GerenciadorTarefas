@@ -65,6 +65,7 @@ export const iesControllers = (fastify: FastifyInstance,
             
         }
     })
+
     fastify.put('/alterarIes/:codigo', async (request, reply) => {
 
         try {
@@ -80,6 +81,7 @@ export const iesControllers = (fastify: FastifyInstance,
             reply.code(500).send({error: "Erro ao alterar Ies"})
         }
     })
+
     fastify.delete('/apagarIes/:codigo', async (request, reply) => {
 
         try {
@@ -93,26 +95,6 @@ export const iesControllers = (fastify: FastifyInstance,
         } catch (error) {   
             reply.code(500).send({ error: 'Houve algum problema ao salvar' })
         }
-
-    })
-
-    fastify.get('/buscarIes/:cnpj', async (request: any, reply) => {
-
-        try {
-            console.log(request.params.cnpj)
-
-            const cnpj = request.params.cnpj;
-            const ies = buscarIesPorCnpjUseCase.execute(cnpj);
-
-            if (ies) {
-                reply.code(200).send(ies)
-            } else {
-                reply.code(404).send({ erro: 'Ies não encontrada' })
-            }
-        } catch (error) {
-            reply.code(500).send({ erro: 'Erro de servidor' })
-        }
-
 
     })
 

@@ -18,6 +18,7 @@ model Ies {
   nome        String
   cnpj        String   @unique
   dataCriacao DateTime @default(now())
+  Turma       Turma[]
 }
 
 model Turma {
@@ -26,7 +27,8 @@ model Turma {
   dataCriacao       DateTime @default(now())
   dataInicioPeriodo DateTime @default(now())
   dataFinalPeriodo  DateTime @default(now())
-  codigoIes         String
+  ies               Ies      @relation(fields: [iesCodigo], references: [codigo])
+  iesCodigo         String
 }
 
 model DisciplinaAluno {
