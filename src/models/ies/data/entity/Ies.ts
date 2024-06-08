@@ -1,16 +1,23 @@
-export interface Ies {
+import { UUID } from "crypto";
+
+export interface Ies{
+
     codigo: string;
     nome: string;
-    dataCriacao : Date;
+    dataCriacao: Date;
     cnpj: string;
+
 }
 
-export interface IesCriacaoDto {
+export interface IesCriacaoDto{
+    
     nome: string;
     cnpj: string;
+    
 }
-
-export interface IesUpdateDto {
+export interface IesUpdateDto{
+    
     nome?: string;
     cnpj?: string;
+    
 }
