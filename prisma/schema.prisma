@@ -31,3 +31,15 @@ model Tarefa {
   data_prevista  DateTime
 }
 
+model Usuario {
+  RA                   String    @id
+  nomeUsuario          String
+  senhaUsuario         String
+  emailUsuario         String    @unique
+  telefoneUsuario      String
+  tipoUsuario          String
+  turmaID              String
+  dataCriacaoUsuario   DateTime  @default(now())
+  situacaoUsuario      Boolean
+  dataAlteracaoUsuario DateTime?
+}
