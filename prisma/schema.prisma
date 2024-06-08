@@ -20,6 +20,17 @@ model Ies {
   dataCriacao DateTime @default(now())
 }
 
+model Tarefa {
+  codigo         Int      @id @default(autoincrement())
+  disciplina     String
+  disciplinaId   Int
+  data_registro  DateTime @default(now())
+  situacao       String
+  data_alteracao DateTime @updatedAt
+  descricao      String
+  data_prevista  DateTime
+}
+
 model Usuario {
   RA                   String    @id
   nomeUsuario          String
