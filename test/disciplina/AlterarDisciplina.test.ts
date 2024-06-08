@@ -4,6 +4,7 @@ import { AlterarDisciplinaUseCase } from "../../src/models/disciplina/domain/use
 import { SalvarDisciplinaUseCase } from "../../src/models/disciplina/domain/useCases/SalvarUseCase";
 import { FakeDataService } from "../../src/services/fake.data.service";
 
+
 describe("AlteracaoDisciplinaTest", () =>{
 
     let alterarDisciplinaUseCase : AlterarDisciplinaUseCase;
@@ -20,14 +21,14 @@ describe("AlteracaoDisciplinaTest", () =>{
     it('Alterar disciplina cadastrada', async () => {
 
         const disciplinaCriacaoDto: DisciplinaCriacaoDto = {
-            nome: fakeService.username,
-            professor: fakeService.professor,
-            coordenador: fakeService.coordenador
+            nome: fakeService.nome,
+            professor: fakeService.nome,
+            coordenador: fakeService.nome
         }
         const disciplina = await salvarDisciplinaUseCase.execute(disciplinaCriacaoDto);
 
         const disciplinaAlterarDto : DisciplinaUpdateDto = {
-            nome: "UPDATE DISCIPLINA",
+            nome: fakeService.nome,
             professor: "UPDATE DISCIPLINA",
             coordenador: "UPDATE DISCIPLINA"
         }

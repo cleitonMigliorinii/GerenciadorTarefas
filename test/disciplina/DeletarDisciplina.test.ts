@@ -24,8 +24,8 @@ describe("DeletarDisciplinaTest", () =>{
 
         const disciplinaCriacaoDto: DisciplinaCriacaoDto = {
             nome: fakeService.nome,
-            professor: fakeService.professor,
-            coordenador: fakeService.coordenador,
+            professor: fakeService.nome,
+            coordenador: fakeService.nome,
         }
         const disciplina = await salvarDisciplinaUseCase.execute(disciplinaCriacaoDto);
 

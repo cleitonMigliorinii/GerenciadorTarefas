@@ -6,6 +6,7 @@ import { DeletarDisciplinaAlunoUseCase } from "../../src/models/disciplinaAluno/
 import { SalvarDisciplinaAlunoUseCase } from "../../src/models/disciplinaAluno/domain/useCase/SalvarDisciplinaAlunoUseCase";
 import { FakeDataService } from "../../src/services/fake.data.service";
 
+
 describe("DeletarDisciplinaAlunoTest", () =>{
 
     let deletarDisciplinaAlunoUseCase : DeletarDisciplinaAlunoUseCase;
@@ -24,9 +25,9 @@ describe("DeletarDisciplinaAlunoTest", () =>{
     it('deletar aluno cadastrado em disciplina', async () => {
 
         const disciplinaAlunoCriacaoDto: DisciplinaAlunoCriacaoDto = {
-            codigoAluno: fakeService.codigoAluno,
-            codigoDisciplina: fakeService.codigoDisciplina,
-            situacao: fakeService.situacao
+            codigoAluno: fakeService.codigo,
+            codigoDisciplina: fakeService.codigo,
+            situacao: 'A'
         }
         const disciplinaAluno = await salvarDisciplinaAlunoUseCase.execute(disciplinaAlunoCriacaoDto);
 
@@ -35,7 +36,7 @@ describe("DeletarDisciplinaAlunoTest", () =>{
         await deletarDisciplinaAlunoUseCase.execute(disciplinaAluno.codigo);
         
         const disciplinaAlunoRetorno = await buscarDisciplinaAlunoPorAlunoUseCase.execute(disciplinaAluno.codigoAluno);
-        expect(disciplinaAlunoRetorno).toBeNull();
+        expect(disciplinaAlunoRetorno).toEqual([]);
     })
 
 

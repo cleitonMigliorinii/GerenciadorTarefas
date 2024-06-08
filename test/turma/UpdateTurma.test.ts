@@ -2,7 +2,7 @@ import { TurmaCriacaoDto, TurmaUpdateDto } from "../../src/models/turma/data/ent
 import { TurmaRepository } from "../../src/models/turma/data/repository/turmaRepository";
 import { CadastrarTurmaUseCase } from "../../src/models/turma/domain/useCases/CadastrarTurmaUseCase";
 import { UpdateTurmaUseCase } from "../../src/models/turma/domain/useCases/UpdateTurmaUseCase";
-import { FakeDataService } from "../../src/service/turmaFake.data.service";
+import { FakeDataService } from "../../src/services/fake.data.service";
 
 describe("AlteraçãoTurmaTest", () => {
     let alterarTurmaUseCase: UpdateTurmaUseCase;

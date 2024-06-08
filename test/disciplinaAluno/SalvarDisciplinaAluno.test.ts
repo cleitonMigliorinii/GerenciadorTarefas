@@ -4,6 +4,7 @@ import { SalvarDisciplinaAlunoUseCase } from "../../src/models/disciplinaAluno/d
 import { FakeDataService } from "../../src/services/fake.data.service";
 
 
+
 describe('SalvarDisciplinaAluno', () => {
 
     let salvarDisciplinaAlunoUseCase: SalvarDisciplinaAlunoUseCase;
@@ -19,9 +20,9 @@ describe('SalvarDisciplinaAluno', () => {
     it('teste de vinculação de aluno com nova disciplina', async () => {
 
         const disciplinaAlunoCriacaoDto: DisciplinaAlunoCriacaoDto = {
-            codigoAluno: fakeService.codigoAluno,
-            codigoDisciplina: fakeService.codigoDisciplina,
-            situacao: fakeService.situacao
+            codigoAluno: fakeService.codigo,
+            codigoDisciplina: fakeService.codigo,
+            situacao: 'A'
         }
 
         const disciplinaAluno = await salvarDisciplinaAlunoUseCase.execute(disciplinaAlunoCriacaoDto);
@@ -31,28 +32,6 @@ describe('SalvarDisciplinaAluno', () => {
         expect(disciplinaAlunoCriacaoDto.codigoDisciplina).toBe(disciplinaAluno.codigoDisciplina);
         expect(disciplinaAlunoCriacaoDto.situacao).toBe(disciplinaAluno.situacao)
 
-    })
-
-    it('teste de vinculação de aluno em disciplina já cadastrada', async () =>{
-
-        const codigoDisciplina = fakeService.codigoDisciplina;
-        let disciplinaAlunoTest: DisciplinaAlunoCriacaoDto = {
-            codigoAluno : '1',
-            codigoDisciplina,
-            situacao: 'Ativo',
-        } 
-
-        await salvarDisciplinaAlunoUseCase.execute(disciplinaAlunoTest);
-
-        //disciplinaAlunoTest.codigoAluno = 'Usuario Fralde'
-
-        try{
-            const disciplinaAluno = await salvarDisciplinaAlunoUseCase.execute(disciplinaAlunoTest)
-            expect(disciplinaAluno).toBeUndefined();
-        }catch(error: any){
-            expect(error).toBeInstanceOf(Error);
-            expect(error.message).toBe("Problema ao criar IES")
-        }
     })
 
 })

@@ -1,9 +1,7 @@
 
 import { Turma } from "@prisma/client";
-import prisma from "../../../../config/dataBase";
+import prisma from "../../../../config/database";
 import { TurmaCriacaoDto, TurmaUpdateDto } from "../entity/Turma";
-
-
 
 export interface TurmaRepositoryInterface{
 

@@ -20,9 +20,9 @@ describe("Busca de Disciplina", () => {
     it('Buscar disciplina por Código', async () => {
 
         const disciplinaCriacaoDto: DisciplinaCriacaoDto = {
-            nome: fakeService.username,
-            professor: fakeService.professor,
-            coordenador: fakeService.coordenador
+            nome: fakeService.nome,
+            professor: fakeService.nome,
+            coordenador: fakeService.nome
         }
         const disciplina = await salvarDisciplinaUseCase.execute(disciplinaCriacaoDto);
 

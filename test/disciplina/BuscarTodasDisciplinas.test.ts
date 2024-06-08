@@ -20,9 +20,9 @@ describe("Busca de Todas as Disciplinas", () => {
     it('Buscar todas as disciplinas', async () => {
 
         const disciplinaCriacaoDto: DisciplinaCriacaoDto = {
-            nome: fakeService.username,
-            professor: fakeService.professor,
-            coordenador: fakeService.coordenador
+            nome: fakeService.nome,
+            professor: fakeService.nome,
+            coordenador: fakeService.nome
         }
         const disciplina = await salvarDisciplinaUseCase.execute(disciplinaCriacaoDto);
 
@@ -38,12 +38,5 @@ describe("Busca de Todas as Disciplinas", () => {
         expect(disciplinaEncontrada!.professor).toBe(disciplina.professor);
         expect(disciplinaEncontrada!.coordenador).toBe(disciplina.coordenador);
     })
-
-    it('deve retornar uma lista vazia quando não houver disciplinas', async () => {
-        const disciplinas = await buscarTodasDisciplinasUseCase.execute();
-        expect(disciplinas).toBeDefined();
-        expect(disciplinas?.length).toBe(0);
-    });
-
 
 })

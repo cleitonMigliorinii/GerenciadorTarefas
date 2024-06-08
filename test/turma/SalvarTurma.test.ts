@@ -1,6 +1,6 @@
 import { TurmaRepository } from "../../src/models/turma/data/repository/turmaRepository";
 import { CadastrarTurmaUseCase } from "../../src/models/turma/domain/useCases/CadastrarTurmaUseCase";
-import { FakeDataService } from "../../src/service/turmaFake.data.service";
+import { FakeDataService } from "../../src/services/fake.data.service";
 import { TurmaCriacaoDto } from "../../src/models/turma/data/entity/Turma";
 
 describe('SalvarTurma', () => {

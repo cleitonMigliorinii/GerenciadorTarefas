@@ -4,6 +4,7 @@ import { BuscarIesPorCnpjUseCase } from "../../src/models/ies/domain/useCases/Bu
 import { SalvarIesUseCase } from "../../src/models/ies/domain/useCases/SalvarIesUseCase";
 import { FakeDataService } from "../../src/services/fake.data.service";
 
+
 describe("Busca de IES", () => {
 
     let buscarIesPorCnpjUseCase : BuscarIesPorCnpjUseCase;

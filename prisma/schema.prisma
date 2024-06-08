@@ -18,7 +18,6 @@ model Ies {
   nome        String
   cnpj        String   @unique
   dataCriacao DateTime @default(now())
-  cnpj        String   @unique
 }
 
 model Turma {
@@ -31,11 +30,12 @@ model Turma {
 }
 
 model DisciplinaAluno {
-  codigo           String   @id
+  codigo           String   @id @default(uuid())
   codigoAluno      String
   codigoDisciplina String
   dataRegistro     DateTime @default(now())
   situacao         String
+}
 
 model Tarefa {
   codigo         Int      @id @default(autoincrement())
@@ -59,14 +59,13 @@ model Usuario {
   dataCriacaoUsuario   DateTime  @default(now())
   situacaoUsuario      Boolean
   dataAlteracaoUsuario DateTime?
-
 }
 
 model Disciplina {
-  codigo          String   @id @default(uuid())
-  nome            String @unique
-  professor       String   
-  coordenador     String   
-  dataCriacao     DateTime @default(now())
-  dataAlteracao   DateTime @default(now())
+  codigo        String   @id @default(uuid())
+  nome          String   @unique
+  professor     String
+  coordenador   String
+  dataCriacao   DateTime @default(now())
+  dataAlteracao DateTime @default(now())
 }

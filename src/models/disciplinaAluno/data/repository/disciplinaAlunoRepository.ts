@@ -8,7 +8,6 @@ export interface DisciplinaAlunoRepositoryInterface {
     salvarDisciplinaAluno(disciplinaAluno: DisciplinaAlunoCriacaoDto): Promise<DisciplinaAluno>
 
 }
-
 export class DisciplinaAlunoRepository implements DisciplinaAlunoRepositoryInterface {
 
     async salvarDisciplinaAluno(disciplinaAluno: DisciplinaAlunoCriacaoDto): Promise<DisciplinaAluno>{

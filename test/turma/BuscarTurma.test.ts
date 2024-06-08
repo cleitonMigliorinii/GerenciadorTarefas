@@ -4,7 +4,8 @@ import { TurmaCriacaoDto } from "../../src/models/turma/data/entity/Turma";
 import { TurmaRepository } from "../../src/models/turma/data/repository/turmaRepository";
 import { BuscaTurmaUseCase } from "../../src/models/turma/domain/useCases/BuscarTurmaUseCase";
 import { CadastrarTurmaUseCase } from "../../src/models/turma/domain/useCases/CadastrarTurmaUseCase";
-import { FakeDataService } from "../../src/service/iesFake.data.service";
+import { FakeDataService } from "../../src/services/fake.data.service";
+
 
 describe("Busca de IES", () => {
 

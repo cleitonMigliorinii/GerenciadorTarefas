@@ -23,9 +23,9 @@ describe("AlteracaoDisciplinaAlunoTest", () =>{
     it('Alterar vinculo aluno -> disciplina cadastrado', async () => {
 
         const disciplinaAlunoCriacaoDto: DisciplinaAlunoCriacaoDto = {
-            codigoAluno: fakeService.codigoAluno,
-            codigoDisciplina: fakeService.codigoDisciplina,
-            situacao: fakeService.situacao
+            codigoAluno: fakeService.codigo,
+            codigoDisciplina: fakeService.codigo,
+            situacao: 'A'
         }
         const disciplinaAluno = await salvarDisciplinaAlunoUseCase.execute(disciplinaAlunoCriacaoDto);
 

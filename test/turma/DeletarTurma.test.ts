@@ -3,7 +3,7 @@ import { TurmaRepository } from "../../src/models/turma/data/repository/turmaRep
 import { BuscaTurmaUseCase } from "../../src/models/turma/domain/useCases/BuscarTurmaUseCase";
 import { CadastrarTurmaUseCase } from "../../src/models/turma/domain/useCases/CadastrarTurmaUseCase";
 import { DeleteTurmaUseCase } from "../../src/models/turma/domain/useCases/DeletarTurmaUseCase";
-import { FakeDataService } from "../../src/service/turmaFake.data.service";
+import { FakeDataService } from "../../src/services/fake.data.service";
 
 describe("DeletarIesTest", () =>{
 
