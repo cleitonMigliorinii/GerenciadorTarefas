@@ -41,28 +41,29 @@ model DisciplinaAluno {
 }
 
 model Tarefa {
-  codigo         Int      @id @default(autoincrement())
+  codigo         Int            @id @default(autoincrement())
   disciplina     String
   disciplinaId   Int
-  data_registro  DateTime @default(now())
+  data_registro  DateTime       @default(now())
   situacao       String
-  data_alteracao DateTime @updatedAt
+  data_alteracao DateTime       @updatedAt
   descricao      String
   data_prevista  DateTime
+  NotasTarefas   NotasTarefas[]
 }
 
 model Usuario {
-  RA                   String    @id
+  RA                   String         @id
   nomeUsuario          String
   senhaUsuario         String
-  emailUsuario         String    @unique
+  emailUsuario         String         @unique
   telefoneUsuario      String
   tipoUsuario          String
-  dataCriacaoUsuario   DateTime  @default(now())
+  turmaID              String
+  dataCriacaoUsuario   DateTime       @default(now())
   situacaoUsuario      Boolean
   dataAlteracaoUsuario DateTime?
-  turma                Turma     @relation(fields: [turmaCodigo], references: [codigo])
-  turmaCodigo          String
+  NotasTarefas         NotasTarefas[]
 }
 
 model Disciplina {
@@ -72,4 +73,15 @@ model Disciplina {
   coordenador   String
   dataCriacao   DateTime @default(now())
   dataAlteracao DateTime @default(now())
+}
+
+model NotasTarefas {
+  codigo        String   @id @default(uuid())
+  nota          Float
+  dataCriacao   DateTime @default(now())
+  dataAlteracao DateTime @default(now())
+  tarefa        Tarefa   @relation(fields: [tarefaCodigo], references: [codigo])
+  tarefaCodigo  Int
+  usuario       Usuario  @relation(fields: [usuarioRA], references: [RA])
+  usuarioRA     String
 }
