@@ -34,13 +34,11 @@ model Turma {
 
 model DisciplinaAluno {
   codigo           String     @id @default(uuid())
-  aluno            Usuario    @relation(fields: [codigoAluno], references: [RA])
   codigoAluno      String
   disciplina       Disciplina @relation(fields: [codigoDisciplina], references: [codigo])
   codigoDisciplina String
   dataRegistro     DateTime   @default(now())
   situacao         String
-  disciplina       Disciplina @relation(fields: [codigoDisciplina], references: [codigo])
   usuario          Usuario    @relation(fields: [codigoAluno], references: [RA])
 }
 
@@ -69,6 +67,8 @@ model Usuario {
   dataAlteracaoUsuario DateTime?
   NotasTarefas         NotasTarefas[]
   DisciplinaAluno      DisciplinaAluno[]
+  Turma                Turma?            @relation(fields: [turmaCodigo], references: [codigo])
+  turmaCodigo          String?
 }
 
 model Disciplina {
