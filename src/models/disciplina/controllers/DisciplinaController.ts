@@ -8,6 +8,7 @@ import { AlterarDisciplinaUseCase } from "../domain/useCases/AlterarUseCase";
 import { DeletarDisciplinaUseCase } from "../domain/useCases/DeletarUseCase";
 import { DisciplinaCriacaoDto, DisciplinaUpdateDto } from "../data/entity/Disciplina";
 import { BuscarDisciplinaPorTurmaUseCase } from "../domain/useCases/BuscarPorTurma";
+import { BuscarTodasDisciplinasUseCase } from "../domain/useCases/BuscarTodasDisciplinas";
 
 export const disciplinaControllers = (fastify: FastifyInstance,
     options: RouteShorthandOptions, done: () => void
@@ -19,6 +20,8 @@ export const disciplinaControllers = (fastify: FastifyInstance,
     const buscarDisciplinasPorTurmaUseCase = new BuscarDisciplinaPorTurmaUseCase(disciplinaRepository)
     const alterarDisciplinaUseCase = new AlterarDisciplinaUseCase(disciplinaRepository);
     const deletarDisciplinaUseCase = new DeletarDisciplinaUseCase(disciplinaRepository)
+    const buscarTodasDisciplinasUseCase = new BuscarTodasDisciplinasUseCase(disciplinaRepository)
+
 
     fastify.post('/salvarDisciplina', async (request, reply) => {
         try {
@@ -66,6 +69,20 @@ export const disciplinaControllers = (fastify: FastifyInstance,
             reply.code(500).send({ erro: 'Erro de servidor' })
         }
 
+
+    })
+
+    
+    fastify.get('/listarTodasDisciplinas', async (request: any, reply) => {
+
+        try {
+
+            const disciplinas =  await buscarTodasDisciplinasUseCase.execute();
+            reply.code(200).send(disciplinas)
+
+        } catch (error) {
+            reply.code(500).send({ erro: 'Erro de servidor' })
+        }
 
     })
 
