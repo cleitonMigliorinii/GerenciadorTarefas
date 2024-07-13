@@ -4,8 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/config/server.ts",
-    "test": "jest",
-    "teste": "tsx watch src/config/teste.ts"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -19,8 +18,8 @@
     "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
     "tsx": "^4.7.2",
-    "typescript": "^5.4.5",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "typescript": "^5.4.5"
   },
   "dependencies": {
     "@fastify/cors": "^9.0.1",
