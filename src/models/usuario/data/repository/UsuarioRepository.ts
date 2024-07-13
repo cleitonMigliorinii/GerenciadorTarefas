@@ -42,10 +42,10 @@ export class UsuarioRepository implements UsuarioRepositoryInterface{
         }
     }
 
-    async buscarUsuarioPorTurma(turmaID: string): Promise<Usuario[] | null>{
+    async buscarUsuarioPorTurma(turmaCodigo: string): Promise<Usuario[] | null>{
         try{
             return await prisma.usuario.findMany({
-                where: {turmaID}
+                where: {turmaCodigo}
             })
         }catch(error){
             throw new Error("Problema ao buscar USUARIO")
