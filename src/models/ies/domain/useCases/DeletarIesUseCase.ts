@@ -11,6 +11,7 @@ export class DeletarIesUseCase{
             await this.iesRepository.deletarIes(codigo)
 
         } catch (error) {
+            console.log(error)
             throw new Error("Problema ao deletar IES")
         }
     }

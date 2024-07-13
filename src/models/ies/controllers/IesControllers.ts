@@ -73,27 +73,30 @@ export const iesControllers = (fastify: FastifyInstance,
             const codigo = request.params.codigo as UUID;
             const iesAlterar = request.body as IesUpdateDto;
 
-            const ies = await updateUseCase.execute(codigo, iesAlterar);
+            const ies = await alterarIesUseCase.execute(codigo, iesAlterar);
             
             reply.code(200).send(ies)
             
         } catch (error) {
+            console.log(error)
             reply.code(500).send({error: "Erro ao alterar Ies"})
         }
     })
 
-    fastify.delete('/apagarIes/:codigo', async (request, reply) => {
+    fastify.delete('/deletarIes/:codigo', async (request, reply) => {
 
         try {
             
             const codigo = request.params.codigo as UUID;
-            await deleteUseCase.execute(codigo);
+       
+            await deletarIesUseCase.execute(codigo);
 
             reply.code(204).send("Deletedado com sucesso")
             
            
         } catch (error) {   
-            reply.code(500).send({ error: 'Houve algum problema ao salvar' })
+
+            reply.code(500).send( error )
         }
 
     })
