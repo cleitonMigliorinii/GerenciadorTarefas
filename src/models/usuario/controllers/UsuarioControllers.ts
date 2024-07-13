@@ -35,7 +35,7 @@ export const usuarioControllers = (fastify: FastifyInstance,
 
         try{
             const ra = request.params.ra;
-            const usuario =  buscarUsuarioPorRAUseCase.execute(ra);
+            const usuario = await buscarUsuarioPorRAUseCase.execute(ra);
 
             if(usuario){
                 reply.code(200).send(usuario)
@@ -53,7 +53,7 @@ export const usuarioControllers = (fastify: FastifyInstance,
 
         try{
             const nome = decodeURIComponent(request.params.nome);
-            const usuario =  buscarUsuarioPorNomeUseCase.execute(nome);
+            const usuario = await buscarUsuarioPorNomeUseCase.execute(nome);
 
             if(usuario){
                 reply.code(200).send(usuario)
@@ -67,11 +67,11 @@ export const usuarioControllers = (fastify: FastifyInstance,
 
     })
 
-    fastify.get('/buscarUsuario/turma/:turmaID', async (request: any, reply) => {
+    fastify.get('/buscarUsuario/turma/:turmaCodigo', async (request: any, reply) => {
 
         try {
-            const turmaID = request.params.turmaID
-            const usuario = buscarUsuarioPorTurmaUseCase.execute(turmaID);
+            const turmaCodigo = request.params.turmaCodigo
+            const usuario = await buscarUsuarioPorTurmaUseCase.execute(turmaCodigo);
 
             if (usuario){
                 reply.code(200).send(usuario)

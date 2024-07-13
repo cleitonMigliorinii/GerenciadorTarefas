@@ -1,3 +1,9 @@
+import { IesCriacaoDto } from "../../src/models/ies/data/entity/Ies";
+import { IesRepository } from "../../src/models/ies/data/repository/IesRepository";
+import { SalvarIesUseCase } from "../../src/models/ies/domain/useCases/SalvarIesUseCase";
+import { TurmaCriacaoDto } from "../../src/models/turma/data/entity/Turma";
+import { TurmaRepository } from "../../src/models/turma/data/repository/turmaRepository";
+import { CadastrarTurmaUseCase } from "../../src/models/turma/domain/useCases/CadastrarTurmaUseCase";
 import { UsuarioCriacaoDto } from "../../src/models/usuario/data/entity/usuario";
 import { UsuarioRepository } from "../../src/models/usuario/data/repository/UsuarioRepository";
 import { BuscarUsuarioPorNomeUseCase, BuscarUsuarioPorRAUseCase, BuscarUsuarioPorTurmaUseCase } from "../../src/models/usuario/domain/useCases/BuscarUsuarioUseCase"; 
@@ -10,6 +16,8 @@ describe("Busca de Usuario", () => {
     let buscarUsuarioPorRAUseCase : BuscarUsuarioPorRAUseCase
     let buscarUsuarioPorTurmaUseCase : BuscarUsuarioPorTurmaUseCase
     let salvarUsuarioUseCase: SalvarUsuarioUseCase; 
+    let cadastrarTurmaUseCase: CadastrarTurmaUseCase;
+    let salvarIesUseCase: SalvarIesUseCase;
     let fakeService: any;
 
     beforeEach( ()=>{
@@ -18,10 +26,28 @@ describe("Busca de Usuario", () => {
         buscarUsuarioPorNomeUseCase = new BuscarUsuarioPorNomeUseCase(usuarioRepository)
         buscarUsuarioPorTurmaUseCase = new BuscarUsuarioPorTurmaUseCase(usuarioRepository)
         salvarUsuarioUseCase = new SalvarUsuarioUseCase(usuarioRepository)
+        cadastrarTurmaUseCase = new CadastrarTurmaUseCase(new TurmaRepository());
+        salvarIesUseCase = new SalvarIesUseCase(new IesRepository())
         fakeService = FakeDataService();
     })
 
     it('Buscar USUARIO por RA', async () => {
+
+        const iesCriacaoDto: IesCriacaoDto = {
+            nome: fakeService.empresa,
+            cnpj: fakeService.cnpj
+        }
+
+        const ies = await salvarIesUseCase.execute(iesCriacaoDto);
+
+        const turmaCriacaoDto: TurmaCriacaoDto = {
+            nome: fakeService.username,
+            dataInicioPeriodo: fakeService.dataInicioPeriodo,
+            dataFinalPeriodo: fakeService.dataFinalPeriodo,
+            iesCodigo: ies.codigo
+        };
+
+        const turma = await cadastrarTurmaUseCase.execute(turmaCriacaoDto);
 
         const usuarioCriacaoDto: UsuarioCriacaoDto = {
             RA: fakeService.RA,
@@ -30,8 +56,8 @@ describe("Busca de Usuario", () => {
             emailUsuario: fakeService.email,
             telefoneUsuario: fakeService.telefone,
             tipoUsuario: fakeService.tipoUser,
-            turmaID: fakeService.turma,
-            situacaoUsuario: fakeService.situacao
+            situacaoUsuario: fakeService.situacao,
+            turmaCodigo: turma.codigo
         }
         const usuario = await salvarUsuarioUseCase.execute(usuarioCriacaoDto);
 
@@ -53,6 +79,22 @@ describe("Busca de Usuario", () => {
 
     it('Buscar USUARIO por nome', async () => {
 
+        const iesCriacaoDto: IesCriacaoDto = {
+            nome: fakeService.empresa,
+            cnpj: fakeService.cnpj
+        }
+
+        const ies = await salvarIesUseCase.execute(iesCriacaoDto);
+
+        const turmaCriacaoDto: TurmaCriacaoDto = {
+            nome: fakeService.username,
+            dataInicioPeriodo: fakeService.dataInicioPeriodo,
+            dataFinalPeriodo: fakeService.dataFinalPeriodo,
+            iesCodigo: ies.codigo
+        };
+
+        const turma = await cadastrarTurmaUseCase.execute(turmaCriacaoDto);
+
         const usuarioCriacaoDto: UsuarioCriacaoDto = {
             RA: fakeService.RA,
             nomeUsuario: fakeService.nome,
@@ -60,8 +102,8 @@ describe("Busca de Usuario", () => {
             emailUsuario: fakeService.email,
             telefoneUsuario: fakeService.telefone,
             tipoUsuario: fakeService.tipoUser,
-            turmaID: fakeService.turma,
-            situacaoUsuario: fakeService.situacao
+            situacaoUsuario: fakeService.situacao,
+            turmaCodigo: turma.codigo
         }
         const usuario = await salvarUsuarioUseCase.execute(usuarioCriacaoDto);
 
@@ -96,6 +138,22 @@ describe("Busca de Usuario", () => {
 
     it('Buscar USUARIO por turma', async () => {
 
+        const iesCriacaoDto: IesCriacaoDto = {
+            nome: fakeService.empresa,
+            cnpj: fakeService.cnpj
+        }
+
+        const ies = await salvarIesUseCase.execute(iesCriacaoDto);
+
+        const turmaCriacaoDto: TurmaCriacaoDto = {
+            nome: fakeService.username,
+            dataInicioPeriodo: fakeService.dataInicioPeriodo,
+            dataFinalPeriodo: fakeService.dataFinalPeriodo,
+            iesCodigo: ies.codigo
+        };
+
+        const turma = await cadastrarTurmaUseCase.execute(turmaCriacaoDto);
+
         const usuarioCriacaoDto: UsuarioCriacaoDto = {
             RA: fakeService.RA,
             nomeUsuario: fakeService.nome,
@@ -103,12 +161,12 @@ describe("Busca de Usuario", () => {
             emailUsuario: fakeService.email,
             telefoneUsuario: fakeService.telefone,
             tipoUsuario: fakeService.tipoUser,
-            turmaID: fakeService.turma,
-            situacaoUsuario: fakeService.situacao
+            situacaoUsuario: fakeService.situacao,
+            turmaCodigo: turma.codigo
         }
         const usuario = await salvarUsuarioUseCase.execute(usuarioCriacaoDto);
 
-        const usuarioBusca = await buscarUsuarioPorTurmaUseCase.execute(usuario.turmaID);
+        const usuarioBusca = await buscarUsuarioPorTurmaUseCase.execute(usuario.turmaCodigo);
 
         expect(usuarioBusca).toBeDefined();
 
@@ -116,7 +174,7 @@ describe("Busca de Usuario", () => {
             if (usuarioBusca) {
                 for (const user of usuarioBusca) {
                     
-                    if (usuario.turmaID != user.turmaID) {
+                    if (usuario.turmaCodigo != user.turmaCodigo) {
                         return false
                     }
                 }
