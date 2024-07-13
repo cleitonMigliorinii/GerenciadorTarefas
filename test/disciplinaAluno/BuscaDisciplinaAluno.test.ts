@@ -1,5 +1,6 @@
 
 import { DisciplinaRepository } from "../../src/models/disciplina/data/repository/DisciplinaRepository";
+import { DisciplinaCriacaoDto } from "../../src/models/disciplina/data/entity/Disciplina";
 import { SalvarDisciplinaUseCase } from "../../src/models/disciplina/domain/useCases/SalvarUseCase";
 import { DisciplinaAlunoCriacaoDto } from "../../src/models/disciplinaAluno/data/entity/disciplinaAluno";
 import { DisciplinaAlunoRepository } from "../../src/models/disciplinaAluno/data/repository/disciplinaAlunoRepository";
@@ -9,12 +10,13 @@ import { UsuarioRepository } from "../../src/models/usuario/data/repository/Usua
 import { SalvarUsuarioUseCase } from "../../src/models/usuario/domain/useCases/SalvarUsuarioUseCase";
 import { FakeDataService } from "../../src/services/fake.data.service";
 
-describe("BuscarDisciplinaAlunoTest", () => {
+describe("BuscarDisciplinaAlunoTest", () => { 
 
     let buscarDisciplinaAlunoPorDisciplinaUseCase: BuscarDisciplinaAlunoPorDisciplinaUseCase;
     let salvarDisciplinaAlunoUseCase: SalvarDisciplinaAlunoUseCase;
     let salvarAlunoUseCase: SalvarUsuarioUseCase;
     let salvarDisciplinaUseCase: SalvarDisciplinaUseCase;
+
     let fakeService: any;
 
     beforeEach(() => {
@@ -53,6 +55,7 @@ describe("BuscarDisciplinaAlunoTest", () => {
 
         const disciplinaAlunoCriacaoDto: DisciplinaAlunoCriacaoDto = {
             codigoAluno: aluno.RA,
+
             codigoDisciplina: disciplina.codigo,
             situacao: 'A'
         }

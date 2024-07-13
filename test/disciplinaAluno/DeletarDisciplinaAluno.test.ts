@@ -21,6 +21,7 @@ describe("DeletarDisciplinaAlunoTest", () => {
     let fakeService: any;
 
     beforeEach(() => {
+
         const disciplinaAlunoRepository = new DisciplinaAlunoRepository();
         deletarDisciplinaAlunoUseCase = new DeletarDisciplinaAlunoUseCase(disciplinaAlunoRepository)
         buscarDisciplinaAlunoPorAlunoUseCase = new BuscarDisciplinaAlunoPorAlunoUseCase(disciplinaAlunoRepository)
@@ -34,7 +35,9 @@ describe("DeletarDisciplinaAlunoTest", () => {
 
     it('deletar aluno cadastrado em disciplina', async () => {
 
+
         const alunoCriacaoDto = {
+
             RA: fakeService.RA,
             nomeUsuario: fakeService.nome,
             senhaUsuario: fakeService.senha,
@@ -57,6 +60,7 @@ describe("DeletarDisciplinaAlunoTest", () => {
 
         const disciplinaAlunoCriacaoDto: DisciplinaAlunoCriacaoDto = {
             codigoAluno: aluno.RA,
+
             codigoDisciplina: disciplina.codigo,
             situacao: 'A'
         }

@@ -1,3 +1,4 @@
+
 import { DisciplinaRepository } from "../../src/models/disciplina/data/repository/DisciplinaRepository";
 import { SalvarDisciplinaUseCase } from "../../src/models/disciplina/domain/useCases/SalvarUseCase";
 import { DisciplinaAlunoCriacaoDto } from "../../src/models/disciplinaAluno/data/entity/disciplinaAluno";
@@ -6,8 +7,6 @@ import { SalvarDisciplinaAlunoUseCase } from "../../src/models/disciplinaAluno/d
 import { UsuarioRepository } from "../../src/models/usuario/data/repository/UsuarioRepository";
 import { SalvarUsuarioUseCase } from "../../src/models/usuario/domain/useCases/SalvarUsuarioUseCase";
 import { FakeDataService } from "../../src/services/fake.data.service";
-
-
 
 describe('SalvarDisciplinaAluno', () => {
 
@@ -39,7 +38,6 @@ describe('SalvarDisciplinaAluno', () => {
             turmaID: fakeService.turma,
             situacaoUsuario: fakeService.situacao
         }
-
         const aluno = await salvarAlunoUseCase.execute(alunoCriacaoDto);
 
         const disciplinaCriacaoDto = {
@@ -52,6 +50,7 @@ describe('SalvarDisciplinaAluno', () => {
 
         const disciplinaAlunoCriacaoDto: DisciplinaAlunoCriacaoDto = {
             codigoAluno: aluno.RA,
+
             codigoDisciplina: disciplina.codigo,
             situacao: 'A'
         }

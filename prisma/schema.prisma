@@ -39,6 +39,8 @@ model DisciplinaAluno {
   codigoDisciplina String
   dataRegistro     DateTime   @default(now())
   situacao         String
+  disciplina       Disciplina @relation(fields: [codigoDisciplina], references: [codigo])
+  usuario          Usuario    @relation(fields: [codigoAluno], references: [RA])
 }
 
 model Tarefa {
