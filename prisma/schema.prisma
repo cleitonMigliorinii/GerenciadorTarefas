@@ -33,11 +33,15 @@ model Turma {
 }
 
 model DisciplinaAluno {
-  codigo           String   @id @default(uuid())
+  codigo           String     @id @default(uuid())
+  aluno            Usuario    @relation(fields: [codigoAluno], references: [RA])
   codigoAluno      String
+  disciplina       Disciplina @relation(fields: [codigoDisciplina], references: [codigo])
   codigoDisciplina String
-  dataRegistro     DateTime @default(now())
+  dataRegistro     DateTime   @default(now())
   situacao         String
+  disciplina       Disciplina @relation(fields: [codigoDisciplina], references: [codigo])
+  usuario          Usuario    @relation(fields: [codigoAluno], references: [RA])
 }
 
 model Tarefa {
@@ -53,26 +57,28 @@ model Tarefa {
 }
 
 model Usuario {
-  RA                   String         @id
+  RA                   String            @id
   nomeUsuario          String
   senhaUsuario         String
-  emailUsuario         String         @unique
+  emailUsuario         String            @unique
   telefoneUsuario      String
   tipoUsuario          String
   turmaID              String
-  dataCriacaoUsuario   DateTime       @default(now())
+  dataCriacaoUsuario   DateTime          @default(now())
   situacaoUsuario      Boolean
   dataAlteracaoUsuario DateTime?
   NotasTarefas         NotasTarefas[]
+  DisciplinaAluno      DisciplinaAluno[]
 }
 
 model Disciplina {
-  codigo        String   @id @default(uuid())
-  nome          String   @unique
-  professor     String
-  coordenador   String
-  dataCriacao   DateTime @default(now())
-  dataAlteracao DateTime @default(now())
+  codigo          String            @id @default(uuid())
+  nome            String            @unique
+  professor       String
+  coordenador     String
+  dataCriacao     DateTime          @default(now())
+  dataAlteracao   DateTime          @default(now())
+  DisciplinaAluno DisciplinaAluno[]
 }
 
 model NotasTarefas {

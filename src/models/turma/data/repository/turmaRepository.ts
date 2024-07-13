@@ -31,7 +31,14 @@ export class TurmaRepository implements TurmaRepositoryInterface {
 
         try {
             return await prisma.turma.findUnique({
-                where: {codigo}
+                where: {codigo},
+                include: {
+                    ies: {
+                        select: {
+                            nome: true
+                        }
+                    }
+                }
             })
             
         } catch (error) {
@@ -40,6 +47,35 @@ export class TurmaRepository implements TurmaRepositoryInterface {
             throw new Error("Problema ao buscar turma");
         }
 
+    }
+
+    
+    async buscarTodasTurmas(): Promise <Turma[] | null> {
+
+        try {
+            return await prisma.turma.findMany({ 
+            })
+            
+        } catch (error) {
+            
+
+            throw new Error("Problema ao buscar turma");
+        }
+
+    }
+
+    async buscarTurmaPorIES(iesCodigo: string): Promise <Turma[] | null> {
+        try {
+            return await prisma.turma.findMany({
+                where: {iesCodigo},
+                include: {
+                    ies:true 
+                }
+            })
+
+        } catch (error) {
+            throw new Error("Problema ao buscar turma");
+        }
     }
 
     async updateTurma(codigo: string, turma: TurmaUpdateDto): Promise<Turma> {
