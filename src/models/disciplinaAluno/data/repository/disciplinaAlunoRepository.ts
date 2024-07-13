@@ -6,7 +6,7 @@ import prisma from "../../../../config/database";
 export interface DisciplinaAlunoRepositoryInterface {
 
     salvarDisciplinaAluno(disciplinaAluno: DisciplinaAlunoCriacaoDto): Promise<DisciplinaAluno>
-
+ 
 }
 export class DisciplinaAlunoRepository implements DisciplinaAlunoRepositoryInterface {
 
@@ -60,6 +60,14 @@ export class DisciplinaAlunoRepository implements DisciplinaAlunoRepositoryInter
             })
         }catch(error){
             throw new Error("Problema ao remover aluno da disciplina")
+        }
+    }
+
+    async listarDisciplinaAluno(): Promise<DisciplinaAluno [] | null> {
+        try {
+            return await prisma.disciplinaAluno.findMany()
+        } catch (error) {
+            throw new Error('Problema ao listas as diciplinas dos alunos')
         }
     }
 }

@@ -6,7 +6,9 @@ import { BuscarDisciplinaAlunoPorDisciplinaUseCase } from "../domain/useCase/Bus
 import { AlterarDisciplinaAlunoUseCase } from "../domain/useCase/AlterarDisciplinaAlunoUseCase";
 import { DeletarDisciplinaAlunoUseCase } from "../domain/useCase/DeletarDisciplinaAlunoUseCase";
 import { DisciplinaAlunoCriacaoDto } from "../data/entity/disciplinaAluno";
-
+import { ListarDisciplinaAlunoUseCase } from "../domain/useCase/ListarDisciplinaAlunoUseCase";
+import { request } from "http";
+ 
 export const disciplinaAlunoControllers = (fastify: FastifyInstance,
     options: RouteShorthandOptions, done: () => void
 ) =>{
@@ -17,6 +19,7 @@ export const disciplinaAlunoControllers = (fastify: FastifyInstance,
     const buscarDisciplinaAlunoPorDisciplinaUseCase = new BuscarDisciplinaAlunoPorDisciplinaUseCase(disciplinaAlunoRepository);
     const alterarDisciplinaAlunoUseCase = new AlterarDisciplinaAlunoUseCase(disciplinaAlunoRepository);
     const deletarDisciplinaAlunoUseCase = new DeletarDisciplinaAlunoUseCase(disciplinaAlunoRepository)
+    const listarDisciplinaAluno = new ListarDisciplinaAlunoUseCase(disciplinaAlunoRepository)
 
     fastify.post('/salvarDisciplinaAluno', async (request, reply) =>{
         try{
@@ -100,6 +103,14 @@ export const disciplinaAlunoControllers = (fastify: FastifyInstance,
             reply.code(500).send({erro: 'Problema ao deletar'})
         }
 
+    })
+
+    fastify.get('/listarDisciplinaAluno', async (request, reply) => {
+        try {
+            reply.code(200).send(await listarDisciplinaAluno.execute())
+        } catch (error) {
+            reply.code(500).send({ erro: 'Problema ao listar' })
+        }
     })
 
     done();
