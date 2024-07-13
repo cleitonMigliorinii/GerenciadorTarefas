@@ -18,17 +18,75 @@ model Ies {
   nome        String
   cnpj        String   @unique
   dataCriacao DateTime @default(now())
+  Turma       Turma[]
+}
+
+model Turma {
+  codigo            String   @id @default(uuid())
+  nome              String
+  dataCriacao       DateTime @default(now())
+  dataInicioPeriodo DateTime @default(now())
+  dataFinalPeriodo  DateTime @default(now())
+  ies               Ies      @relation(fields: [iesCodigo], references: [codigo])
+  iesCodigo         String
+}
+
+model DisciplinaAluno {
+  codigo           String     @id @default(uuid())
+  aluno            Usuario    @relation(fields: [codigoAluno], references: [RA])
+  codigoAluno      String
+  disciplina       Disciplina @relation(fields: [codigoDisciplina], references: [codigo])
+  codigoDisciplina String
+  dataRegistro     DateTime   @default(now())
+  situacao         String
+  disciplina       Disciplina @relation(fields: [codigoDisciplina], references: [codigo])
+  usuario          Usuario    @relation(fields: [codigoAluno], references: [RA])
+}
+
+model Tarefa {
+  codigo         Int            @id @default(autoincrement())
+  disciplina     String
+  disciplinaId   Int
+  data_registro  DateTime       @default(now())
+  situacao       String
+  data_alteracao DateTime       @updatedAt
+  descricao      String
+  data_prevista  DateTime
+  NotasTarefas   NotasTarefas[]
 }
 
 model Usuario {
-  RA                   String    @id
+  RA                   String            @id
   nomeUsuario          String
   senhaUsuario         String
-  emailUsuario         String    @unique
+  emailUsuario         String            @unique
   telefoneUsuario      String
   tipoUsuario          String
   turmaID              String
-  dataCriacaoUsuario   DateTime  @default(now())
+  dataCriacaoUsuario   DateTime          @default(now())
   situacaoUsuario      Boolean
   dataAlteracaoUsuario DateTime?
+  NotasTarefas         NotasTarefas[]
+  DisciplinaAluno      DisciplinaAluno[]
+}
+
+model Disciplina {
+  codigo          String            @id @default(uuid())
+  nome            String            @unique
+  professor       String
+  coordenador     String
+  dataCriacao     DateTime          @default(now())
+  dataAlteracao   DateTime          @default(now())
+  DisciplinaAluno DisciplinaAluno[]
+}
+
+model NotasTarefas {
+  codigo        String   @id @default(uuid())
+  nota          Float
+  dataCriacao   DateTime @default(now())
+  dataAlteracao DateTime @default(now())
+  tarefa        Tarefa   @relation(fields: [tarefaCodigo], references: [codigo])
+  tarefaCodigo  Int
+  usuario       Usuario  @relation(fields: [usuarioRA], references: [RA])
+  usuarioRA     String
 }

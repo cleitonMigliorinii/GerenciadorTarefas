@@ -6,7 +6,11 @@ export function FakeDataService() {
 
     const empresa = faker.company.name();
     const cnpj = faker.number.int({min : 10000000000000, max: 99999999999999}).toString()
-    
+    const username = faker.internet.userName();
+    const dataInicioPeriodo = faker.date.between({ from: "2024-02-01T00:00:00.000Z", to: "2024-02-28T00:00:00.000Z" })
+    const dataFinalPeriodo = faker.date.between({ from: '2024-12-01T00:00:00.000Z', to: "2024-12-30T00:00:00.000Z" }) 
+    const codigoIes = faker.number.int({min: 1, max: 999999999}).toString();
+
     const RA = FakeRA()
 
     const nome =  faker.person.fullName()
@@ -27,8 +31,9 @@ export function FakeDataService() {
     const tipoUser = fakeTipoUser()
     const turma = fakeTurma()
     const situacao = fakeSituacao()
+    const codigo = fakeCodigo()
 
-    return {empresa, cnpj, RA, nome, senha, email, telefone, tipoUser, turma, situacao}
+    return {empresa,username, dataInicioPeriodo, dataFinalPeriodo,codigoIes, codigo, cnpj, RA, nome, senha, email, telefone, tipoUser, turma, situacao}
 }
 
 function FakeRA() {
@@ -80,6 +85,14 @@ function fakeTipoUser() {
 }
 
 function fakeTurma() {
+
+    const { v4: uuidv4 } = require('uuid');
+
+    return uuidv4();
+
+}
+
+function fakeCodigo() {
 
     const { v4: uuidv4 } = require('uuid');
 

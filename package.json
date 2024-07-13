@@ -1,7 +1,6 @@
 {
   "name": "gerenciadortarefas",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "tsx watch src/config/server.ts",
@@ -23,8 +22,13 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "@prisma/client": "^5.12.1",
+    "@fastify/cors": "^9.0.1",
+    "@prisma/client": "^5.13.0",
     "fastify": "^4.26.2",
     "zod": "^3.22.4"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "description": ""
 }
