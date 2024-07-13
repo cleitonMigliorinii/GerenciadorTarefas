@@ -7,6 +7,7 @@ import { BuscarDisciplinaPorCodigoUseCase } from "../domain/useCases/BuscarPorCo
 import { AlterarDisciplinaUseCase } from "../domain/useCases/AlterarUseCase";
 import { DeletarDisciplinaUseCase } from "../domain/useCases/DeletarUseCase";
 import { DisciplinaCriacaoDto, DisciplinaUpdateDto } from "../data/entity/Disciplina";
+import { BuscarDisciplinaPorTurmaUseCase } from "../domain/useCases/BuscarPorTurma";
 
 export const disciplinaControllers = (fastify: FastifyInstance,
     options: RouteShorthandOptions, done: () => void
@@ -15,6 +16,7 @@ export const disciplinaControllers = (fastify: FastifyInstance,
     const disciplinaRepository = new DisciplinaRepository();
     const salvarDisciplinaUseCase = new SalvarDisciplinaUseCase(disciplinaRepository);
     const buscarDisciplinaPorCodigoUseCase = new BuscarDisciplinaPorCodigoUseCase(disciplinaRepository)
+    const buscarDisciplinasPorTurmaUseCase = new BuscarDisciplinaPorTurmaUseCase(disciplinaRepository)
     const alterarDisciplinaUseCase = new AlterarDisciplinaUseCase(disciplinaRepository);
     const deletarDisciplinaUseCase = new DeletarDisciplinaUseCase(disciplinaRepository)
 
@@ -43,6 +45,23 @@ export const disciplinaControllers = (fastify: FastifyInstance,
             } else {
                 reply.code(404).send({ erro: 'Disciplina não encontrada' })
             }
+        } catch (error) {
+            reply.code(500).send({ erro: 'Erro de servidor' })
+        }
+
+
+    })
+
+    fastify.get('/buscarDisciplinasPorTurma/:idTurma', async (request: any, reply) => {
+
+        try {
+            console.log(request.params.idTurma)
+
+            const idTurma = request.params.idTurma;
+            const disciplinas = buscarDisciplinasPorTurmaUseCase.execute(idTurma);
+
+            reply.code(200).send(disciplinas)
+
         } catch (error) {
             reply.code(500).send({ erro: 'Erro de servidor' })
         }
