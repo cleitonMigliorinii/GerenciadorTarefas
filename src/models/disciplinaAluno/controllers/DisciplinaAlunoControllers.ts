@@ -56,8 +56,6 @@ export const disciplinaAlunoControllers = (fastify: FastifyInstance,
     fastify.get('/buscarDisciplinaAlunoPorDisciplina/:codigoDisciplina', async (request: any, reply) => {
 
         try{
-            console.log(request.params.codigoDisciplina)
-        
             const codigoDisciplina = request.params.codigoDisciplina;
             const disciplinaAluno =  buscarDisciplinaAlunoPorDisciplinaUseCase.execute(codigoDisciplina);
 
@@ -105,9 +103,13 @@ export const disciplinaAlunoControllers = (fastify: FastifyInstance,
 
     })
 
-    fastify.get('/listarDisciplinaAluno', async (request, reply) => {
+    fastify.get('/listarDisciplinaAluno/:codigoAluno', async (request: any, reply) => {
+
+        const codigoAluno = request.params.codigoAluno;
+        const disciplinaAluno =  buscarDisciplinaAlunoPorAlunoUseCase.execute(codigoAluno);
+
         try {
-            reply.code(200).send(await listarDisciplinaAluno.execute())
+            reply.code(200).send(await disciplinaAluno)
         } catch (error) {
             reply.code(500).send({ erro: 'Problema ao listar' })
         }

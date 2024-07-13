@@ -63,9 +63,11 @@ export class DisciplinaAlunoRepository implements DisciplinaAlunoRepositoryInter
         }
     }
 
-    async listarDisciplinaAluno(): Promise<DisciplinaAluno [] | null> {
+    async listarDisciplinaAluno(codigoAluno: string): Promise<DisciplinaAluno [] | null> {
         try {
-            return await prisma.disciplinaAluno.findMany()
+            return await prisma.disciplinaAluno.findMany({
+                where: {codigoAluno}
+            })
         } catch (error) {
             throw new Error('Problema ao listas as diciplinas dos alunos')
         }
