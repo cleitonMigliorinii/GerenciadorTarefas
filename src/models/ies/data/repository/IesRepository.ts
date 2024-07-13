@@ -49,6 +49,7 @@ export class IesRepository implements IesRepositoryInterface {
                 data: ies
             })
         } catch (error) {
+            console.log(error)
             throw new Error("Problema ao alterar IES")
         }
     }
@@ -59,6 +60,7 @@ export class IesRepository implements IesRepositoryInterface {
                 where: { codigo }
             })
         } catch (error) {
+            console.log(error)
             throw new Error("Problema ao deletar IES")
         }
     }

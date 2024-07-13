@@ -22,22 +22,23 @@ model Ies {
 }
 
 model Turma {
-  codigo            String   @id @default(uuid())
+  codigo            String    @id @default(uuid())
   nome              String
-  dataCriacao       DateTime @default(now())
-  dataInicioPeriodo DateTime @default(now())
-  dataFinalPeriodo  DateTime @default(now())
-  ies               Ies      @relation(fields: [iesCodigo], references: [codigo])
+  dataCriacao       DateTime  @default(now())
+  dataInicioPeriodo DateTime  @default(now())
+  dataFinalPeriodo  DateTime  @default(now())
+  ies               Ies       @relation(fields: [iesCodigo], references: [codigo])
   iesCodigo         String
+  Usuario           Usuario[]
 }
 
 model DisciplinaAluno {
   codigo           String     @id @default(uuid())
   codigoAluno      String
+  disciplina       Disciplina @relation(fields: [codigoDisciplina], references: [codigo])
   codigoDisciplina String
   dataRegistro     DateTime   @default(now())
   situacao         String
-  disciplina       Disciplina @relation(fields: [codigoDisciplina], references: [codigo])
   usuario          Usuario    @relation(fields: [codigoAluno], references: [RA])
 }
 
@@ -54,28 +55,30 @@ model Tarefa {
 }
 
 model Usuario {
-  RA                   String         @id
+  RA                   String            @id
   nomeUsuario          String
   senhaUsuario         String
-  emailUsuario         String         @unique
+  emailUsuario         String            @unique
   telefoneUsuario      String
   tipoUsuario          String
   turmaID              String
-  dataCriacaoUsuario   DateTime       @default(now())
+  dataCriacaoUsuario   DateTime          @default(now())
   situacaoUsuario      Boolean
   dataAlteracaoUsuario DateTime?
   NotasTarefas         NotasTarefas[]
   DisciplinaAluno      DisciplinaAluno[]
+  Turma                Turma?            @relation(fields: [turmaCodigo], references: [codigo])
+  turmaCodigo          String?
 }
 
 model Disciplina {
-  codigo        String   @id @default(uuid())
-  nome          String   @unique
-  professor     String
-  coordenador   String
-  dataCriacao   DateTime @default(now())
-  dataAlteracao DateTime @default(now())
-  DisciplinaAluno      DisciplinaAluno[]
+  codigo          String            @id @default(uuid())
+  nome            String            @unique
+  professor       String
+  coordenador     String
+  dataCriacao     DateTime          @default(now())
+  dataAlteracao   DateTime          @default(now())
+  DisciplinaAluno DisciplinaAluno[]
 }
 
 model NotasTarefas {

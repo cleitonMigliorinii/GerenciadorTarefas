@@ -19,5 +19,6 @@ export interface IesUpdateDto{
     
     nome?: string;
     cnpj?: string;
+    dataCriacao?: Date;
     
 }

@@ -25,6 +25,6 @@ server.get('/', (request, reply) => {
     return { message: 'Você está na API da CESUL' }
 })
 
-server.listen({ port: PORT }).then(() => {
+server.listen({ port: PORT}).then(() => {
     console.log("Servidor está rodando na porta " + PORT)
 })
