@@ -6,6 +6,8 @@ import { UUID } from "crypto";
 import { BuscaTurmaUseCase } from "../domain/useCases/BuscarTurmaUseCase";
 import { UpdateTurmaUseCase } from "../domain/useCases/UpdateTurmaUseCase";
 import { DeleteTurmaUseCase } from "../domain/useCases/DeletarTurmaUseCase";
+import { BuscarTodasTurmasUseCAse } from "../domain/useCases/BuscarTodasTurmasUseCAse";
+import { BuscarTurmaPorIESUseCase } from "../domain/useCases/BuscarTurmaPorIESUseCase";
 
 
 export const turmaControllers = (fastify: FastifyInstance, options: RouteShorthandOptions, done: () => void) => {
@@ -15,6 +17,9 @@ export const turmaControllers = (fastify: FastifyInstance, options: RouteShortha
     const buscarTurmaUseCase = new BuscaTurmaUseCase(turmaRepository);
     const updateTurmaUseCase = new UpdateTurmaUseCase(turmaRepository);
     const deletarTurmaUseCase = new DeleteTurmaUseCase(turmaRepository);
+    const buscarTodasTurmas = new BuscarTodasTurmasUseCAse(turmaRepository);
+    const buscarTurmaPorIES = new BuscarTurmaPorIESUseCase(turmaRepository);
+
 
     fastify.post('/salvarTurma', async (request, reply) => {
 
@@ -27,6 +32,44 @@ export const turmaControllers = (fastify: FastifyInstance, options: RouteShortha
             reply.code(500).send({error: "Houve algum problema ao salvar"})
         }
     })
+
+    fastify.get('/buscarTurma', async (request, reply) => {
+
+        try {
+            
+            const turmas = await buscarTodasTurmas.execute();
+
+            if(turmas){
+                reply.code(200).send(turmas)
+            }else{
+                reply.code(404).send({error: "Turma não encontrada"})
+            }
+           
+        } catch (error) {
+            
+        }
+    })
+
+    fastify.get('/buscarTurmaIes/:iesCodigo', async (request, reply) => {
+
+        try {
+            
+            const iesCodigo = request.params.iesCodigo as string;
+
+            console.log(iesCodigo)
+            const turmas = await buscarTurmaPorIES.execute(iesCodigo);
+
+            if(turmas){
+                reply.code(200).send(turmas)
+            }else{
+                reply.code(404).send({error: "Turma não encontrada"})
+            }
+           
+        } catch (error) {
+            
+        }
+    })
+
     fastify.get('/buscarTurma/:codigo', async (request, reply) => {
 
         try {
