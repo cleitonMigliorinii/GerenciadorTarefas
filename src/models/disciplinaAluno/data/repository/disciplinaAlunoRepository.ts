@@ -73,7 +73,7 @@ export class DisciplinaAlunoRepository implements DisciplinaAlunoRepositoryInter
                 },
             })
         } catch (error) {
-            throw new Error('Problema ao listas as diciplinas dos alunos')
+            throw new Error('Problema ao listar as diciplinas dos alunos')
         }
     }
 }
