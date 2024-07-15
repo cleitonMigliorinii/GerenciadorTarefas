@@ -1,4 +1,4 @@
-import { DisciplinaAluno } from "@prisma/client";
+import { DisciplinaAluno } from "@prisma/client/wasm";
 import { DisciplinaAlunoCriacaoDto, DisciplinaAlunoUpdateDto } from "../entity/disciplinaAluno";
 import prisma from "../../../../config/database";
 
@@ -68,8 +68,17 @@ export class DisciplinaAlunoRepository implements DisciplinaAlunoRepositoryInter
             return await prisma.disciplinaAluno.findMany({
                 where: {codigoAluno},
                 include: {
-                    disciplina: true, // Inclui dados da tabela Disciplina
-                    usuario: true
+                    usuario: {
+                        select: {
+                            nomeUsuario: true,
+                            emailUsuario: true
+                        }
+                    },
+                    disciplina: {
+                        select: {
+                            nome: true
+                        }
+                    }
                 },
             })
         } catch (error) {
