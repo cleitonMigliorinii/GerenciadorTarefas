@@ -17,6 +17,7 @@ export class IesRepository implements IesRepositoryInterface {
             return iesCriada
 
         } catch (error) {
+            console.log(error)
             throw new Error('Falha ao salvar ies');
         }
 

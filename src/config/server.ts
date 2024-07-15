@@ -16,9 +16,10 @@ server.register(tarefaRoutes);
 server.register(usuarioRoutes);
 server.register(turmaRoutes)
 
-server.register(cors, { 
-    allowedHeaders: '*'
- })
+server.register(cors, {
+    allowedHeaders: '*',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Métodos permitidos
+})
 
 
 server.get('/', (request, reply) => {
