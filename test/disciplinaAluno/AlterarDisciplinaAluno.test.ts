@@ -1,15 +1,10 @@
-
 import { DisciplinaRepository } from "../../src/models/disciplina/data/repository/DisciplinaRepository";
-import { DisciplinaCriacaoDto } from "../../src/models/disciplina/data/entity/Disciplina";
 import { SalvarDisciplinaUseCase } from "../../src/models/disciplina/domain/useCases/SalvarUseCase";
 import { DisciplinaAlunoCriacaoDto, DisciplinaAlunoUpdateDto } from "../../src/models/disciplinaAluno/data/entity/disciplinaAluno";
 import { DisciplinaAlunoRepository } from "../../src/models/disciplinaAluno/data/repository/disciplinaAlunoRepository";
 import { AlterarDisciplinaAlunoUseCase } from "../../src/models/disciplinaAluno/domain/useCase/AlterarDisciplinaAlunoUseCase";
 import { SalvarDisciplinaAlunoUseCase } from "../../src/models/disciplinaAluno/domain/useCase/SalvarDisciplinaAlunoUseCase";
 import { UsuarioRepository } from "../../src/models/usuario/data/repository/UsuarioRepository";
-import { AlterarIesUseCase } from "../../src/models/ies/domain/useCases/AlterarIesUseCase";
-import { SalvarIesUseCase } from "../../src/models/ies/domain/useCases/SalvarIesUseCase";
-import { UsuarioCriacaoDto } from "../../src/models/usuario/data/entity/usuario";
 import { SalvarUsuarioUseCase } from "../../src/models/usuario/domain/useCases/SalvarUsuarioUseCase";
 import { FakeDataService } from "../../src/services/fake.data.service";
 
@@ -44,7 +39,7 @@ describe("AlteracaoDisciplinaAlunoTest", () => {
             emailUsuario: fakeService.email,
             telefoneUsuario: fakeService.telefone,
             tipoUsuario: fakeService.tipoUser,
-            turmaID: fakeService.turma,
+            turmaCodigo: fakeService.codigo,
             situacaoUsuario: fakeService.situacao
         }
 

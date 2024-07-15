@@ -39,7 +39,7 @@ describe("BuscarDisciplinaAlunoTest", () => {
             emailUsuario: fakeService.email,
             telefoneUsuario: fakeService.telefone,
             tipoUsuario: fakeService.tipoUser,
-            turmaID: fakeService.turma,
+            turmaCodigo: fakeService.turma,
             situacaoUsuario: fakeService.situacao
         }
 
@@ -55,7 +55,6 @@ describe("BuscarDisciplinaAlunoTest", () => {
 
         const disciplinaAlunoCriacaoDto: DisciplinaAlunoCriacaoDto = {
             codigoAluno: aluno.RA,
-
             codigoDisciplina: disciplina.codigo,
             situacao: 'A'
         }

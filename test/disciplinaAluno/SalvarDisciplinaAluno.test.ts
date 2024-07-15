@@ -35,7 +35,7 @@ describe('SalvarDisciplinaAluno', () => {
             emailUsuario: fakeService.email,
             telefoneUsuario: fakeService.telefone,
             tipoUsuario: fakeService.tipoUser,
-            turmaID: fakeService.turma,
+            turmaCodigo: fakeService.turma,
             situacaoUsuario: fakeService.situacao
         }
         const aluno = await salvarAlunoUseCase.execute(alunoCriacaoDto);

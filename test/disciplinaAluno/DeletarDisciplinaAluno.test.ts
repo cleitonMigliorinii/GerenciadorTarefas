@@ -44,7 +44,7 @@ describe("DeletarDisciplinaAlunoTest", () => {
             emailUsuario: fakeService.email,
             telefoneUsuario: fakeService.telefone,
             tipoUsuario: fakeService.tipoUser,
-            turmaID: fakeService.turma,
+            turmaCodigo: fakeService.turma,
             situacaoUsuario: fakeService.situacao
         }
 
