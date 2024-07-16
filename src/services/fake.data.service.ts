@@ -14,7 +14,7 @@ export function FakeDataService() {
     const RA = FakeRA()
 
     const nome =  faker.person.fullName()
-    .replace(/Mr. /g, '')
+    .replace(/Mr. /g, '0')
     .replace(/Ms. /g, '')
     .replace(/Dr. /g, '')
     .replace(/Mrs. /g, '')
