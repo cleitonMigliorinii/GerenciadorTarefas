@@ -19,7 +19,7 @@ export class TarefaRepository implements TarefaRepositoryInterface {
           disciplinaId: tarefa.disciplinaId,
           situacao: tarefa.situacao,
           descricao: tarefa.descricao,
-          data_prevista: tarefa.dataPrevista,
+          data_prevista: tarefa.data_prevista,
           data_registro: new Date(),
           data_alteracao: new Date()
         }

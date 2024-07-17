@@ -16,7 +16,7 @@ export interface TarefaCriacaoDto {
     disciplinaId: number;
     situacao: string;
     descricao: string;
-    dataPrevista: Date | string;
+    data_prevista: Date | string;
 }
 
 // DTO para atualização de Tarefa

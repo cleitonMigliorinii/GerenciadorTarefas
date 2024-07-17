@@ -6,6 +6,7 @@ import { BuscarTarefaPorIdUseCase } from "../domain/useCases/BuscarTarefaPorIdUs
 import { TarefaRepository } from "../data/repository/TarefaRepository";
 import { TarefaCriacaoDto, TarefaUpdateDto } from "../data/entity/Tarefa";
 import { BuscarTarefaPorDisciplinaUseCase } from "../domain/useCases/BuscarTarefaPorDisciplinaUseCase";
+import { ListarTodasTarefasUseCase } from "../domain/useCases/ListarTodasTarefasUseCase";
 
 export const tarefaControllers = (
     fastify: FastifyInstance,
@@ -18,6 +19,7 @@ export const tarefaControllers = (
     const deletarTarefaUseCase = new DeletarTarefaUseCase(tarefaRepository);
     const buscarTarefaPorIdUseCase = new BuscarTarefaPorIdUseCase(tarefaRepository);
     const buscarTarefaPorDisciplinaUseCase = new BuscarTarefaPorDisciplinaUseCase(tarefaRepository);
+    const listarTodasTarefasUseCase = new ListarTodasTarefasUseCase(tarefaRepository);
 
     fastify.post('/tarefas', async (request, reply) => {
         try {
@@ -58,6 +60,15 @@ export const tarefaControllers = (
             reply.code(500).send({ erro: 'Erro de servidor' });
         }
     });
+
+    fastify.get('/tarefas', async (request, reply) => {
+        try {
+            const tarefas = await listarTodasTarefasUseCase.execute();
+            reply.code(200).send(tarefas);
+        } catch (error) {
+            reply.code(500).send({ erro: 'Erro ao listar tarefas' });
+        }
+    });
     
 
     fastify.put('/tarefas/:codigo', async (request, reply) => {
@@ -84,5 +95,6 @@ export const tarefaControllers = (
     });
 
     done();
+
 }
 
