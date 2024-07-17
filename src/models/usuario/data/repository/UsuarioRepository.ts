@@ -73,7 +73,14 @@ export class UsuarioRepository implements UsuarioRepositoryInterface{
         }
     }
 
-    
+    async listAllUsers(): Promise<Usuario[] | null>{
+        try{
+            return await prisma.usuario.findMany();
+
+        }catch(error){
+            throw new Error("Problema ao buscar USUARIO")
+        }
+    }
 
 
 

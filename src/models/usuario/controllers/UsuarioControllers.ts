@@ -3,7 +3,7 @@ import { UsuarioRepository } from "../data/repository/UsuarioRepository";
 import { UsuarioCriacaoDto, UsuarioAtualizacaoDto } from "../data/entity/usuario";
 
 import { SalvarUsuarioUseCase } from "../domain/useCases/SalvarUsuarioUseCase";
-import { BuscarUsuarioPorRAUseCase, BuscarUsuarioPorNomeUseCase, BuscarUsuarioPorTurmaUseCase } from "../domain/useCases/BuscarUsuarioUseCase";
+import { BuscarUsuarioPorRAUseCase, BuscarUsuarioPorNomeUseCase, BuscarUsuarioPorTurmaUseCase, GetListAllUsers } from "../domain/useCases/BuscarUsuarioUseCase";
 import { AlterarUsuarioUseCase } from "../domain/useCases/AlterarUsuarioUseCase";
 import { DeletarUsuarioUseCase } from "../domain/useCases/DeletarUsuarioUseCase";
 
@@ -18,6 +18,7 @@ export const usuarioControllers = (fastify: FastifyInstance,
     const buscarUsuarioPorTurmaUseCase = new BuscarUsuarioPorTurmaUseCase(usuarioRepository)
     const alterarUsuarioUseCase = new AlterarUsuarioUseCase(usuarioRepository);
     const deletarUsuarioUseCase = new DeletarUsuarioUseCase(usuarioRepository);
+    const listAllUsers = new GetListAllUsers(usuarioRepository);
 
     fastify.post('/salvarUsuario', async (request, reply) =>{
         try{
@@ -112,6 +113,22 @@ export const usuarioControllers = (fastify: FastifyInstance,
 
         } catch (error) {
             reply.code(500).send({erro: 'Problema ao deletar USUARIO'})
+        }
+
+    })
+
+    fastify.get('/list/users', async (request: any, reply) => {
+        
+        try {
+            const usuario = await listAllUsers.execute()
+
+            if (usuario){
+                reply.code(200).send(usuario)
+            }else{
+                reply.code(404).send({erro: "USUARIOS não encontrados"})
+            }
+        }catch(error){
+            reply.code(500).send({erro: 'Erro de servidor'})
         }
 
     })

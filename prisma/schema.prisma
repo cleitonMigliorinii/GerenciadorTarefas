@@ -61,7 +61,6 @@ model Usuario {
   emailUsuario         String            @unique
   telefoneUsuario      String
   tipoUsuario          String
-  //turmaID              String
   dataCriacaoUsuario   DateTime          @default(now())
   situacaoUsuario      Boolean
   dataAlteracaoUsuario DateTime?

@@ -166,7 +166,7 @@ describe("Busca de Usuario", () => {
         }
         const usuario = await salvarUsuarioUseCase.execute(usuarioCriacaoDto);
 
-        const usuarioBusca = await buscarUsuarioPorTurmaUseCase.execute(usuario.turmaCodigo);
+        const usuarioBusca = await buscarUsuarioPorTurmaUseCase.execute(turma.codigo);
 
         expect(usuarioBusca).toBeDefined();
 

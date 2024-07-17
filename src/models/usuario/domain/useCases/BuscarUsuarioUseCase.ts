@@ -51,3 +51,22 @@ export class BuscarUsuarioPorTurmaUseCase{
     }
 
 }
+
+export class GetListAllUsers{
+    static execute() {
+        throw new Error("Method not implemented.");
+    }
+
+    constructor(private usuarioRepository: UsuarioRepository){}
+
+    async execute(): Promise<Usuario[] | null> {
+        try {
+            return await this.usuarioRepository.listAllUsers()
+
+        } catch {
+            throw new Error("Problema ao listar todos os USUARIO por turma")
+
+        }
+    }
+
+}
