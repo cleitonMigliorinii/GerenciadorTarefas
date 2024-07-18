@@ -54,6 +54,8 @@ describe('SalvarIes', () => {
             turmaCodigo: turma.codigo
         }
 
+        console.log(usuarioCriacaoDto)
+
         const usuario = await salvarUsuarioUseCase.execute(usuarioCriacaoDto);
 
         expect(usuario).toBeDefined();

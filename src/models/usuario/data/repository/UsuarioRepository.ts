@@ -9,7 +9,9 @@ export class UsuarioRepository implements UsuarioRepositoryInterface{
 
     async salvarUsuario(usuario: UsuarioCriacaoDto): Promise<Usuario>{
         try {
-        
+
+            console.log(usuario);
+
             const usuarioCriado = await prisma.usuario.create({
                 data: usuario
             })

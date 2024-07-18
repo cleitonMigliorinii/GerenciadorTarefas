@@ -9,7 +9,7 @@ export interface Usuario {
     tipoUsuario: string;
     situacaoUsuario: Boolean;
     dataAlteracaoUsuario?: Date;
-    turmaCodigo: Turma
+    turma: Turma
 
 }
 export interface UsuarioCriacaoDto {
